@@ -1,0 +1,120 @@
+{
+  "version": 1,
+  "purpose": "format-validation-only",
+  "max_seq_length": 1024,
+  "target_counts_after_expansion": {
+    "train": 100,
+    "valid": 20,
+    "test": 20
+  },
+  "samples": [
+    {
+      "id": "T01",
+      "split": "train",
+      "row": 1,
+      "scenario_family": "state-array-mutation",
+      "source": "handwritten-format-example",
+      "code_sha256": "c0b96e8edf17f4434fa4f8399fcabc5b09106bc95300b12dc9b10dae1cc64054",
+      "has_issue": true
+    },
+    {
+      "id": "T02",
+      "split": "train",
+      "row": 2,
+      "scenario_family": "interval-lifecycle",
+      "source": "handwritten-format-example",
+      "code_sha256": "5e1798a75f68375a1cb10eb90e83226ba9ab6347050e48e99428a883cc9c616c",
+      "has_issue": true
+    },
+    {
+      "id": "T03",
+      "split": "train",
+      "row": 3,
+      "scenario_family": "title-effect-dependency",
+      "source": "handwritten-format-example",
+      "code_sha256": "cb53d067963079b34fedaeda0408134e3be0e65a811de2bc32bec9112e8585b0",
+      "has_issue": true
+    },
+    {
+      "id": "T04",
+      "split": "train",
+      "row": 4,
+      "scenario_family": "sort-prop-mutation",
+      "source": "handwritten-format-example",
+      "code_sha256": "36c4cac3526dab9786412eeb5717b36e8b352ccaf1277520cd2e82518b4a5f4e",
+      "has_issue": true
+    },
+    {
+      "id": "T05",
+      "split": "train",
+      "row": 5,
+      "scenario_family": "informative-image-alt",
+      "source": "handwritten-format-example",
+      "code_sha256": "fde011cd91a1a798c6e3fa5d940b8c03f8bdc866eb6d7c02f1e8612e229ff0c8",
+      "has_issue": true
+    },
+    {
+      "id": "T06",
+      "split": "train",
+      "row": 6,
+      "scenario_family": "safe-text-node",
+      "source": "handwritten-format-example",
+      "code_sha256": "b4ebdf4311379abb04f661d2ce42027e1f48a95afceeaa3bd2a50bf9df43ba04",
+      "has_issue": false
+    },
+    {
+      "id": "T07",
+      "split": "train",
+      "row": 7,
+      "scenario_family": "resize-cleanup",
+      "source": "handwritten-format-example",
+      "code_sha256": "62cf59e5607dd3fb9ef02a8d7cc2e3cb9591e487c5e8d874e3f9c8b0b9da8279",
+      "has_issue": false
+    },
+    {
+      "id": "T08",
+      "split": "train",
+      "row": 8,
+      "scenario_family": "stable-list-identity",
+      "source": "handwritten-format-example",
+      "code_sha256": "6ba3ee3fbe891c454fb781d364c80de9fb0cf6c960929fa1f3b0d74283efe28c",
+      "has_issue": false
+    },
+    {
+      "id": "V01",
+      "split": "valid",
+      "row": 1,
+      "scenario_family": "map-return-value",
+      "source": "handwritten-format-example",
+      "code_sha256": "e2889b57b4e5d5587a7bb9df3d3569232034636a729b5a9a7e5dfc14c09467a9",
+      "has_issue": true
+    },
+    {
+      "id": "V02",
+      "split": "valid",
+      "row": 2,
+      "scenario_family": "finite-number-parse",
+      "source": "handwritten-format-example",
+      "code_sha256": "f9068b8daa737ca4761504092d1ae65d1116ff3f561fbdfd4ef05d9259bcc51d",
+      "has_issue": false
+    },
+    {
+      "id": "E01",
+      "split": "test",
+      "row": 1,
+      "scenario_family": "cancel-button-submit",
+      "source": "handwritten-format-example",
+      "code_sha256": "2c8ba83f391ff73ea3b7709897412d8d0f6a8815c355e8e72559e690009b3fbb",
+      "has_issue": true
+    },
+    {
+      "id": "E02",
+      "split": "test",
+      "row": 2,
+      "scenario_family": "zero-preserving-fallback",
+      "source": "handwritten-format-example",
+      "code_sha256": "f07555c0a51e160435c0b8b513be4be306ef8071bcfc1be125faf2544da13460",
+      "has_issue": false
+    }
+  ]
+}

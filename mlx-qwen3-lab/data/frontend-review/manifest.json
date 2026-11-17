@@ -1,0 +1,1282 @@
+{
+  "version": 2,
+  "purpose": "synthetic-learning-pilot",
+  "max_seq_length": 1024,
+  "seed": 42,
+  "target_counts_after_expansion": {
+    "train": 100,
+    "valid": 20,
+    "test": 20
+  },
+  "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+  "limitations": "缺陷/修复成对；验证集20条只有10个独立场景；非真实项目分布、非独立人工标注。",
+  "samples": [
+    {
+      "id": "T22-bug",
+      "split": "train",
+      "scenario_family": "json-promise-await",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "adf51bfbdb04fc30e2059b64e7ddebfbc65129436dda1c52a7cf55f4fc4e7bd7",
+      "has_issue": true,
+      "row": 1
+    },
+    {
+      "id": "T21-ok",
+      "split": "train",
+      "scenario_family": "fetch-http-status",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "2a78482cc38708ffdbe4a4687d0f566d5ad6eb9b32dc9860fb907091ca96f023",
+      "has_issue": false,
+      "row": 2
+    },
+    {
+      "id": "T46-ok",
+      "split": "train",
+      "scenario_family": "toggle-aria-state",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "bdcd580274b3e11ee0958babfe79329dd1f506140cd92e307829d90db09068bd",
+      "has_issue": false,
+      "row": 3
+    },
+    {
+      "id": "T05-ok",
+      "split": "train",
+      "scenario_family": "derived-prop-snapshot",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "bccecfbdc9f42141b06ee91643fc4628f1c4484be0de0346c98b21bda992fbd6",
+      "has_issue": false,
+      "row": 4
+    },
+    {
+      "id": "T33-ok",
+      "split": "train",
+      "scenario_family": "reduce-empty-initial",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "91ec142de8fe3f4248dc177e838eecd3dd00b0a1de4c1f4265ba36eab778a90b",
+      "has_issue": false,
+      "row": 5
+    },
+    {
+      "id": "T26-bug",
+      "split": "train",
+      "scenario_family": "query-parameter-encoding",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "1ce62e0bbdfa93981ae8ba112d6231ae55014d31ada1db4f6338676f4bf4c24e",
+      "has_issue": true,
+      "row": 6
+    },
+    {
+      "id": "T01-ok",
+      "split": "train",
+      "scenario_family": "state-array-mutation",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "81a8ec3800d3c595010a20de049dbdb3626db9415d7a9b63a29fbd4a6cf91801",
+      "has_issue": false,
+      "row": 7
+    },
+    {
+      "id": "T36-bug",
+      "split": "train",
+      "scenario_family": "filter-callback-return",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "30aba1adb23c9b710a5be6024992f38cbd4c393e643af865e544e53c2b715e12",
+      "has_issue": true,
+      "row": 8
+    },
+    {
+      "id": "T08-ok",
+      "split": "train",
+      "scenario_family": "conditional-hook-order",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "fbed2ce394011ec0c007765e046110a1f1daee5dddcf71853d2c839f01b99d1b",
+      "has_issue": false,
+      "row": 9
+    },
+    {
+      "id": "T40-bug",
+      "split": "train",
+      "scenario_family": "zero-preserving-fallback",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "3bb607fa406469e819e4427bcf482be35975e58c8df07e166e15cb5d8dfcf2b3",
+      "has_issue": true,
+      "row": 10
+    },
+    {
+      "id": "T37-ok",
+      "split": "train",
+      "scenario_family": "splice-return-removed",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "5484d31728416cb3fa3aecb5452c5ff718acfd87625aefa0ec9c02a10ee4b34e",
+      "has_issue": false,
+      "row": 11
+    },
+    {
+      "id": "T06-bug",
+      "split": "train",
+      "scenario_family": "ref-does-not-render",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "56425749b2044be4685a89e6fd96432773c1193b9890ed66bf2c2046288b52ae",
+      "has_issue": true,
+      "row": 12
+    },
+    {
+      "id": "T28-ok",
+      "split": "train",
+      "scenario_family": "search-response-race",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "4e88dc48abac9a63746aec5c0f0db0622687f6936c3614b3986db877720cb8c2",
+      "has_issue": false,
+      "row": 13
+    },
+    {
+      "id": "T29-bug",
+      "split": "train",
+      "scenario_family": "random-list-key",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "804377de0b4596c97af2acb30ded33a49a201e1c6253578aceef261e450c1ca7",
+      "has_issue": true,
+      "row": 14
+    },
+    {
+      "id": "T37-bug",
+      "split": "train",
+      "scenario_family": "splice-return-removed",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "c104d1e2b92575f7bad6f970a274da61aec56627c9204a620d0a727d0e42b4a5",
+      "has_issue": true,
+      "row": 15
+    },
+    {
+      "id": "T23-ok",
+      "split": "train",
+      "scenario_family": "async-map-aggregation",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "181daa21b95480852d0894ddbf87bc4e7f8e480acfaf91428703a2e902904d97",
+      "has_issue": false,
+      "row": 16
+    },
+    {
+      "id": "T25-bug",
+      "split": "train",
+      "scenario_family": "json-request-content-type",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "b60cac3b49884a5ae66b25ab6dab39eda2e273e564c74bec80976d18bb38bb4e",
+      "has_issue": true,
+      "row": 17
+    },
+    {
+      "id": "T47-bug",
+      "split": "train",
+      "scenario_family": "object-url-release",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "ff92f0b7425c5edda312e1476ee3e36e464d587a23e270588795eb71ccb85f9b",
+      "has_issue": true,
+      "row": 18
+    },
+    {
+      "id": "T39-bug",
+      "split": "train",
+      "scenario_family": "set-membership-api",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "ee02b9e83dfebf5172b93694e29e9746bab78abea750af7b5c58f5381ce8e915",
+      "has_issue": true,
+      "row": 19
+    },
+    {
+      "id": "T19-ok",
+      "split": "train",
+      "scenario_family": "form-default-navigation",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "656488c9dbbf816ec7a8679a4a60f4fd82da0c31d75d46b0b1e15eeec2f65503",
+      "has_issue": false,
+      "row": 20
+    },
+    {
+      "id": "T16-bug",
+      "split": "train",
+      "scenario_family": "numeric-input-string",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "769cdd6f91ca1d1b8fc3f773623a005f2bdb63e4d0a46e7c28bf5d28d165b63d",
+      "has_issue": true,
+      "row": 21
+    },
+    {
+      "id": "T11-ok",
+      "split": "train",
+      "scenario_family": "timeout-unmount-cancel",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "7e0e91b9526a792efb69fabd3baa57333740b526fd99ec6db202422f067c075a",
+      "has_issue": false,
+      "row": 22
+    },
+    {
+      "id": "T17-bug",
+      "split": "train",
+      "scenario_family": "checkbox-value-vs-checked",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "017e5195797740cc1d38ddfb8fc6dca4b8da5673b6f4a0534d579192aedab9e6",
+      "has_issue": true,
+      "row": 23
+    },
+    {
+      "id": "T49-bug",
+      "split": "train",
+      "scenario_family": "listener-capture-mismatch",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "17ee21b935ae5cad7b6b6512931540404f594480c0fbe5988004dc30ea831b86",
+      "has_issue": true,
+      "row": 24
+    },
+    {
+      "id": "T41-bug",
+      "split": "train",
+      "scenario_family": "informative-image-alt",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "15383b7b1c5cf1623ecd026d59f42d7ddfca54a65b65d440ebedaa25d4e2f587",
+      "has_issue": true,
+      "row": 25
+    },
+    {
+      "id": "T25-ok",
+      "split": "train",
+      "scenario_family": "json-request-content-type",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "c78c42544f3925a22c9f218d065805c872a407d0353a9be39c0ab20d0afd27d8",
+      "has_issue": false,
+      "row": 26
+    },
+    {
+      "id": "T42-ok",
+      "split": "train",
+      "scenario_family": "label-control-association",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "4a3c4d11e73adf1be73738e0f0198434d9fcc5ea2606c0c20b7c8071d9f47c1f",
+      "has_issue": false,
+      "row": 27
+    },
+    {
+      "id": "T14-bug",
+      "split": "train",
+      "scenario_family": "body-scroll-lock-restore",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "df9ca47a724c875978d1b36ddc31cb5b6975310c13b827da98458c6cbdb249a1",
+      "has_issue": true,
+      "row": 28
+    },
+    {
+      "id": "T44-ok",
+      "split": "train",
+      "scenario_family": "clickable-div-keyboard",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "12a60d43d63ce2e50586666e1a65d9ac10b253f560ca68208273a1e71ffc0936",
+      "has_issue": false,
+      "row": 29
+    },
+    {
+      "id": "T17-ok",
+      "split": "train",
+      "scenario_family": "checkbox-value-vs-checked",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "3ccc5f18c68a3a34f0e7be0f4899f575df54e36464b99072fa29c66f1ba95549",
+      "has_issue": false,
+      "row": 30
+    },
+    {
+      "id": "T05-bug",
+      "split": "train",
+      "scenario_family": "derived-prop-snapshot",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "0ee5fd7128dd140ea51ee435ae8d8d5e1acb679d369502b915d4479146a8e4bb",
+      "has_issue": true,
+      "row": 31
+    },
+    {
+      "id": "T24-ok",
+      "split": "train",
+      "scenario_family": "async-foreach-wait",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "d110f350177f576c46d938667e6805c79b7375b65ea6fd8e95638fc0437eb56e",
+      "has_issue": false,
+      "row": 32
+    },
+    {
+      "id": "T30-ok",
+      "split": "train",
+      "scenario_family": "index-key-reordered-input",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "7e8ed353255e40bb18f550ce8d7e3c0295c660a6280a7e6820131160c2b5d687",
+      "has_issue": false,
+      "row": 33
+    },
+    {
+      "id": "T32-ok",
+      "split": "train",
+      "scenario_family": "reverse-state-reference",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "fb70cdf1292ea2809e2f72176ea5b9ea485204873255f73586125306d5313c10",
+      "has_issue": false,
+      "row": 34
+    },
+    {
+      "id": "T38-bug",
+      "split": "train",
+      "scenario_family": "slice-exclusive-end",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "1969ec8f9dd9254b24c898869633bfc720df037c38620d35788a24f89a24ef6e",
+      "has_issue": true,
+      "row": 35
+    },
+    {
+      "id": "T23-bug",
+      "split": "train",
+      "scenario_family": "async-map-aggregation",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "c78217e33884b13ce464e6cac16375860ded0ae08289db89f050f22bfff60885",
+      "has_issue": true,
+      "row": 36
+    },
+    {
+      "id": "T50-bug",
+      "split": "train",
+      "scenario_family": "animation-frame-cancel",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "6cb88baf694d3bd5d95b4f4ac0cf08efc21592e0002eebd0b6dda8baf1391564",
+      "has_issue": true,
+      "row": 37
+    },
+    {
+      "id": "T27-bug",
+      "split": "train",
+      "scenario_family": "loading-reset-on-error",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "accdf62915fc8f4ec6c4000a95654c62d50ddc06055771915d141435034ca1cd",
+      "has_issue": true,
+      "row": 38
+    },
+    {
+      "id": "T43-ok",
+      "split": "train",
+      "scenario_family": "icon-button-accessible-name",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "5004a2f1ef07dfb83162d211d15a5d56172857ae7554fc1ffc601b048967eff5",
+      "has_issue": false,
+      "row": 39
+    },
+    {
+      "id": "T07-bug",
+      "split": "train",
+      "scenario_family": "unconditional-render-setter",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "508145c7c2bce81f1f82917416ac4c8bf8fbe31e598fcd1afa47a55d93538b8a",
+      "has_issue": true,
+      "row": 40
+    },
+    {
+      "id": "T19-bug",
+      "split": "train",
+      "scenario_family": "form-default-navigation",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "174c486a80ad54dea2f87849f981af96f3b1671e02ad1beb146a53e2f067e0e6",
+      "has_issue": true,
+      "row": 41
+    },
+    {
+      "id": "T12-ok",
+      "split": "train",
+      "scenario_family": "title-effect-dependency",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "1d190572bae12351bdfef467424664b9d6000b77faeafda063a0aa93cc666eea",
+      "has_issue": false,
+      "row": 42
+    },
+    {
+      "id": "T20-ok",
+      "split": "train",
+      "scenario_family": "keyboard-key-type",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "eb8856121a7f7a8497ac2296a5cfc3d7b26a9e1a45f34dd6a54c3e1296ad4db3",
+      "has_issue": false,
+      "row": 43
+    },
+    {
+      "id": "T21-bug",
+      "split": "train",
+      "scenario_family": "fetch-http-status",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "a971a6f6d26f285075c3a063828c198502f501c0550f0f1e3a971ec7ce529719",
+      "has_issue": true,
+      "row": 44
+    },
+    {
+      "id": "T10-bug",
+      "split": "train",
+      "scenario_family": "listener-function-identity",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "7b6bbda19783760c95688136e7c1fa0806a2e7044b2c4c723bbdef485436dcc5",
+      "has_issue": true,
+      "row": 45
+    },
+    {
+      "id": "T34-bug",
+      "split": "train",
+      "scenario_family": "numeric-sort-default",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "d760ca704955c0046eefb5ea37f3569ee7d34cd6824c31be29adb44d76c67de3",
+      "has_issue": true,
+      "row": 46
+    },
+    {
+      "id": "T31-ok",
+      "split": "train",
+      "scenario_family": "sort-prop-mutation",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "6f8359cce747b569ca0fba6ceb4a517120d76b055de113aaa410e5458f0ccbfa",
+      "has_issue": false,
+      "row": 47
+    },
+    {
+      "id": "T31-bug",
+      "split": "train",
+      "scenario_family": "sort-prop-mutation",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "6d4544d401b69c9a069668a9129bbd0a3533cf8aafa4792e77999d05f6d6216d",
+      "has_issue": true,
+      "row": 48
+    },
+    {
+      "id": "T04-ok",
+      "split": "train",
+      "scenario_family": "delayed-state-snapshot",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "f6fd44c6a757b8ed38790cf4163e83cf4c6bee02beb745c795da674e0118fea3",
+      "has_issue": false,
+      "row": 49
+    },
+    {
+      "id": "T18-bug",
+      "split": "train",
+      "scenario_family": "controlled-input-readonly",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "a7bef70d20a2056d66c311f4b5daa9cafb3c3c90d267ccd9b9069d6350dbb4a1",
+      "has_issue": true,
+      "row": 50
+    },
+    {
+      "id": "T50-ok",
+      "split": "train",
+      "scenario_family": "animation-frame-cancel",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "f73c58400b2638da0f83b3312048a32db13284be874a8f309d36f3a3530ca253",
+      "has_issue": false,
+      "row": 51
+    },
+    {
+      "id": "T24-bug",
+      "split": "train",
+      "scenario_family": "async-foreach-wait",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "32fcfb4f1c7f1da1587d57e0ebb99396d67c796b1cd84464cf63a0d574743085",
+      "has_issue": true,
+      "row": 52
+    },
+    {
+      "id": "T02-bug",
+      "split": "train",
+      "scenario_family": "state-object-mutation",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "7833a9263e3e4b6b4b71bc5a28af263079e5aecac52d4ecde6f41e7b678379c9",
+      "has_issue": true,
+      "row": 53
+    },
+    {
+      "id": "T26-ok",
+      "split": "train",
+      "scenario_family": "query-parameter-encoding",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "2a2ecf93aca09224e8768578456b8ea59d7bdf69c333b46a192d309ded678d3a",
+      "has_issue": false,
+      "row": 54
+    },
+    {
+      "id": "T09-bug",
+      "split": "train",
+      "scenario_family": "interval-lifecycle",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "3edbc51486d7368dd1b66d4fa12407e7a96a5eefbc887bbc5954baf90c51f9c3",
+      "has_issue": true,
+      "row": 55
+    },
+    {
+      "id": "T20-bug",
+      "split": "train",
+      "scenario_family": "keyboard-key-type",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "e5f68d6a0e2221ae84f0007146d0feec94f0fe948e2ce3b957cea498b53e71a7",
+      "has_issue": true,
+      "row": 56
+    },
+    {
+      "id": "T30-bug",
+      "split": "train",
+      "scenario_family": "index-key-reordered-input",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "4f541802135628beb69ae0b9815cdf8ac946286b0ce59b8c26f7887bf22961eb",
+      "has_issue": true,
+      "row": 57
+    },
+    {
+      "id": "T35-bug",
+      "split": "train",
+      "scenario_family": "sort-boolean-comparator",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "8a50b28340fecc642cf80649135dabc6a6410137672bb0c5bcb1bbe2eac376df",
+      "has_issue": true,
+      "row": 58
+    },
+    {
+      "id": "T12-bug",
+      "split": "train",
+      "scenario_family": "title-effect-dependency",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "0d5c9a06511470314f5686f808071baa5c39a1a82fb8ce8ac7a569b8bf5dee2a",
+      "has_issue": true,
+      "row": 59
+    },
+    {
+      "id": "T32-bug",
+      "split": "train",
+      "scenario_family": "reverse-state-reference",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "0bacb90a62c5de1185daf06ff567a02a5e752754e3dfaba98c3b1822dd64d1e3",
+      "has_issue": true,
+      "row": 60
+    },
+    {
+      "id": "T13-bug",
+      "split": "train",
+      "scenario_family": "resize-observer-disconnect",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "61229ca770ebd91fbc6f79808665f6ceda734dd2afe73c5d91a4a72f9e12a314",
+      "has_issue": true,
+      "row": 61
+    },
+    {
+      "id": "T03-ok",
+      "split": "train",
+      "scenario_family": "batched-state-increment",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "553b85d1eca5a907ab87f476a8c9b2d5b1dab8c9373b38bf6b717763cba76b5d",
+      "has_issue": false,
+      "row": 62
+    },
+    {
+      "id": "T04-bug",
+      "split": "train",
+      "scenario_family": "delayed-state-snapshot",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "09dcb66c273ed00a6a2d87d23f62610435122fa9525fca5c76006992fc5110a7",
+      "has_issue": true,
+      "row": 63
+    },
+    {
+      "id": "T34-ok",
+      "split": "train",
+      "scenario_family": "numeric-sort-default",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "68a8a9e8b45b22078a0403c57520b3ac820a3d7266ad2c483192bf7ffa200163",
+      "has_issue": false,
+      "row": 64
+    },
+    {
+      "id": "T42-bug",
+      "split": "train",
+      "scenario_family": "label-control-association",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "a824fd6c176187e7d932f95539ca9dd3c3867288325fd32b1f208b40fd6b0348",
+      "has_issue": true,
+      "row": 65
+    },
+    {
+      "id": "T10-ok",
+      "split": "train",
+      "scenario_family": "listener-function-identity",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "60b8df8bb95a51295877ff128f17d3e528d079534931cb5ebd84d0696deae36c",
+      "has_issue": false,
+      "row": 66
+    },
+    {
+      "id": "T40-ok",
+      "split": "train",
+      "scenario_family": "zero-preserving-fallback",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "223185efaccdca81880f177cc28bba0479f011983130bf74626e4da7d135f0aa",
+      "has_issue": false,
+      "row": 67
+    },
+    {
+      "id": "T22-ok",
+      "split": "train",
+      "scenario_family": "json-promise-await",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "b255f1e71fd273cadf24b512f26e1733450e538f88cda24cf76564022f83a915",
+      "has_issue": false,
+      "row": 68
+    },
+    {
+      "id": "T46-bug",
+      "split": "train",
+      "scenario_family": "toggle-aria-state",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "799dcac5c30dab466fe75d72761751ea1bb86771d8c7526a2c0aaceb83fdcf3e",
+      "has_issue": true,
+      "row": 69
+    },
+    {
+      "id": "T11-bug",
+      "split": "train",
+      "scenario_family": "timeout-unmount-cancel",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "1a299f88d3c6bc445be776c187cd3e970d8a31bb6e6fc1a1600cb4b18ca4ff30",
+      "has_issue": true,
+      "row": 70
+    },
+    {
+      "id": "T01-bug",
+      "split": "train",
+      "scenario_family": "state-array-mutation",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "636bd3f0b2453261e938ef79edccafa5d5af562eb8c4be4b17b0667e69bc4e43",
+      "has_issue": true,
+      "row": 71
+    },
+    {
+      "id": "T48-ok",
+      "split": "train",
+      "scenario_family": "untrusted-text-innerhtml",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "0f0460583a524ea09a2c4aeab877f67780e1d12a161db4fbab55165d3cdfadd1",
+      "has_issue": false,
+      "row": 72
+    },
+    {
+      "id": "T29-ok",
+      "split": "train",
+      "scenario_family": "random-list-key",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "78f2ae5694023bc5b881d97d581e9602452b370737de4d0f6de63a42737f34e4",
+      "has_issue": false,
+      "row": 73
+    },
+    {
+      "id": "T47-ok",
+      "split": "train",
+      "scenario_family": "object-url-release",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "d825186f953da0f716aa1e8d748cc9e5ea8ee5c1d9249b6ca2c6f851240da709",
+      "has_issue": false,
+      "row": 74
+    },
+    {
+      "id": "T27-ok",
+      "split": "train",
+      "scenario_family": "loading-reset-on-error",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "5ce6d45d584ec651e4bdda5efcfd264914e3556b2d8991ecd1746520d0c189f5",
+      "has_issue": false,
+      "row": 75
+    },
+    {
+      "id": "T45-ok",
+      "split": "train",
+      "scenario_family": "action-excluded-from-tab",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "a3627b4abb2b7e1b878161f1642c2079910d771d4c640e8a276aad2ebf56ecf2",
+      "has_issue": false,
+      "row": 76
+    },
+    {
+      "id": "T13-ok",
+      "split": "train",
+      "scenario_family": "resize-observer-disconnect",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "2362029f3bf9c5cca8c6b28b496ad439ae0c10977801edeb2bbca40be60d1f97",
+      "has_issue": false,
+      "row": 77
+    },
+    {
+      "id": "T36-ok",
+      "split": "train",
+      "scenario_family": "filter-callback-return",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "dc56ef8718fcb93a43b80e5191485cf28d85867b77dddb8131d9ab5beba98567",
+      "has_issue": false,
+      "row": 78
+    },
+    {
+      "id": "T43-bug",
+      "split": "train",
+      "scenario_family": "icon-button-accessible-name",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "c05bc97c96223d950c9a5625405188b14ed2c6bf6efb9e2cfc63ca24e488a492",
+      "has_issue": true,
+      "row": 79
+    },
+    {
+      "id": "T39-ok",
+      "split": "train",
+      "scenario_family": "set-membership-api",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "435472fe64286d4b70f91163e5bbcf03c0a9fb6fcb2f40bc75c3cba9450950e6",
+      "has_issue": false,
+      "row": 80
+    },
+    {
+      "id": "T33-bug",
+      "split": "train",
+      "scenario_family": "reduce-empty-initial",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "7e1ceb64eaeb926268f1bedf12a17a9abb64bb911a9d0a1a2bac7b4e4f34aa26",
+      "has_issue": true,
+      "row": 81
+    },
+    {
+      "id": "T15-ok",
+      "split": "train",
+      "scenario_family": "eager-event-handler",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "f35cb9be98fe19c709667a39e784eac3a1c3e839333b5b75622e6ecd7c3e12d0",
+      "has_issue": false,
+      "row": 82
+    },
+    {
+      "id": "T14-ok",
+      "split": "train",
+      "scenario_family": "body-scroll-lock-restore",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "f8176385b814a4ad537609989d24f583c7d5fcc20da673195766f51d0b458bcb",
+      "has_issue": false,
+      "row": 83
+    },
+    {
+      "id": "T45-bug",
+      "split": "train",
+      "scenario_family": "action-excluded-from-tab",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "df67a918c15596a4764e9a2b5f529e370d4a58fa513d0cf54d3d2eabddabcee8",
+      "has_issue": true,
+      "row": 84
+    },
+    {
+      "id": "T49-ok",
+      "split": "train",
+      "scenario_family": "listener-capture-mismatch",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "cc4e8cf3390e48591f0a092288eb01b969ddb3a2093fbb7a692536a05f08b3cd",
+      "has_issue": false,
+      "row": 85
+    },
+    {
+      "id": "T03-bug",
+      "split": "train",
+      "scenario_family": "batched-state-increment",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "61b2a35c9f40c1c381e3e4a3ccf73f94afa2fc6721618ee331e79050506209e7",
+      "has_issue": true,
+      "row": 86
+    },
+    {
+      "id": "T28-bug",
+      "split": "train",
+      "scenario_family": "search-response-race",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "14b0129af6629e40b4e1887a3a37c2dd581744068c9264f554503e23bc7064c1",
+      "has_issue": true,
+      "row": 87
+    },
+    {
+      "id": "T38-ok",
+      "split": "train",
+      "scenario_family": "slice-exclusive-end",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "c12ffca45d1b2493308aadd1e602ce0cb31bf0c3a0759b2814f5fd7403d53a4a",
+      "has_issue": false,
+      "row": 88
+    },
+    {
+      "id": "T06-ok",
+      "split": "train",
+      "scenario_family": "ref-does-not-render",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "d7ee9d33b5de4d7ef0ce596f32ba4c5765a683b19fd10d7a816914999d7bd682",
+      "has_issue": false,
+      "row": 89
+    },
+    {
+      "id": "T35-ok",
+      "split": "train",
+      "scenario_family": "sort-boolean-comparator",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "a7317df5809c77cf413fbac7a55ab6939720e12c4fea15e466eb3f8769590c40",
+      "has_issue": false,
+      "row": 90
+    },
+    {
+      "id": "T44-bug",
+      "split": "train",
+      "scenario_family": "clickable-div-keyboard",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "c90710bce0890d8c515c4a6cdbd4af3b7663681ffec65ba3ac2ec472fb41f076",
+      "has_issue": true,
+      "row": 91
+    },
+    {
+      "id": "T07-ok",
+      "split": "train",
+      "scenario_family": "unconditional-render-setter",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "f09679d1f529117c2709a006bc3d98552194fdf770450ce4a11aa0585a988513",
+      "has_issue": false,
+      "row": 92
+    },
+    {
+      "id": "T09-ok",
+      "split": "train",
+      "scenario_family": "interval-lifecycle",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "a438adbd80189ca70469d337294031f41f628a89fa34cc2c7c4a7381275994fa",
+      "has_issue": false,
+      "row": 93
+    },
+    {
+      "id": "T15-bug",
+      "split": "train",
+      "scenario_family": "eager-event-handler",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "48920fe402e5f563c5ac7cb2c40e10ec42c10f92ea38513ac528800507b354e2",
+      "has_issue": true,
+      "row": 94
+    },
+    {
+      "id": "T16-ok",
+      "split": "train",
+      "scenario_family": "numeric-input-string",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "c73ab25734a8e4330606b6ce6dc4c57d5eef9589521b295fefbd47fd49a85fda",
+      "has_issue": false,
+      "row": 95
+    },
+    {
+      "id": "T18-ok",
+      "split": "train",
+      "scenario_family": "controlled-input-readonly",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "e6955a6e6f6534acb5628f6c750549d1ede05f52f9526ec71d143da1919ad89c",
+      "has_issue": false,
+      "row": 96
+    },
+    {
+      "id": "T48-bug",
+      "split": "train",
+      "scenario_family": "untrusted-text-innerhtml",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "512fa05fbf85eb5f2aa09f2aaaad95276a27ee7e29c4bd53726a4b3604b04e1f",
+      "has_issue": true,
+      "row": 97
+    },
+    {
+      "id": "T02-ok",
+      "split": "train",
+      "scenario_family": "state-object-mutation",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "1a8061ca1a044bf04944dcd858b32917a181e8e315de833ffe132ce6909c714b",
+      "has_issue": false,
+      "row": 98
+    },
+    {
+      "id": "T08-bug",
+      "split": "train",
+      "scenario_family": "conditional-hook-order",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "00a8046fb04d8b708e6d4b8b0749bce4c781c1fdef7403806b23e0fbfa201f74",
+      "has_issue": true,
+      "row": 99
+    },
+    {
+      "id": "T41-ok",
+      "split": "train",
+      "scenario_family": "informative-image-alt",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "e703922d19fc104930a6d616153a9929a528d9c2405d7c4c34dd8874106ed75b",
+      "has_issue": false,
+      "row": 100
+    },
+    {
+      "id": "V10-ok",
+      "split": "valid",
+      "scenario_family": "multiple-select-value-array",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "7a91b0875e77a91d24dd50d9a4b981c41e765cd70fbb0dc9917b14358f19f751",
+      "has_issue": false,
+      "row": 1
+    },
+    {
+      "id": "V03-ok",
+      "split": "valid",
+      "scenario_family": "memo-length-only-dependency",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "c733f1d68113818595c9a56854e172d558416a12ea9d24bb738e43ebae953973",
+      "has_issue": false,
+      "row": 2
+    },
+    {
+      "id": "V08-bug",
+      "split": "valid",
+      "scenario_family": "route-query-hash",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "8015347547641eee1f94412e9c45767e8a098f14d91b934904876f1cf70b6d96",
+      "has_issue": true,
+      "row": 3
+    },
+    {
+      "id": "V03-bug",
+      "split": "valid",
+      "scenario_family": "memo-length-only-dependency",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "3b7db3da8b434f6d31de3ad19e36aab556eb96082de9a0b51fd0803bc2652765",
+      "has_issue": true,
+      "row": 4
+    },
+    {
+      "id": "V05-ok",
+      "split": "valid",
+      "scenario_family": "radio-group-name",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "33ec2d9b085aaa7676aa7fdca12a44fe06db1292c9fb4fe3943dc77dba168421",
+      "has_issue": false,
+      "row": 5
+    },
+    {
+      "id": "V07-ok",
+      "split": "valid",
+      "scenario_family": "aborted-controller-reuse",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "9b02e7e9b27c1da04d5c48b2d087d82172dbbfc5205b966f29fe7f4c703caf53",
+      "has_issue": false,
+      "row": 6
+    },
+    {
+      "id": "V08-ok",
+      "split": "valid",
+      "scenario_family": "route-query-hash",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "065bf7868763d96fb8c15560fe30488883a64e8b049e2f123665dc565a7d4e0a",
+      "has_issue": false,
+      "row": 7
+    },
+    {
+      "id": "V10-bug",
+      "split": "valid",
+      "scenario_family": "multiple-select-value-array",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "28d6731013e78a63f16d77462f16a3e9200096aa6097fd94eb8cb840d4860a77",
+      "has_issue": true,
+      "row": 8
+    },
+    {
+      "id": "V04-bug",
+      "split": "valid",
+      "scenario_family": "debounce-previous-timer",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "2979723f0d6cde21e24de583d66ef5d1eb6dd8af16d60780d6c059eac0233dca",
+      "has_issue": true,
+      "row": 9
+    },
+    {
+      "id": "V07-bug",
+      "split": "valid",
+      "scenario_family": "aborted-controller-reuse",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "f324ec9835bea271e9280b163620e30ecdb02715d356d90c124c01c81937229c",
+      "has_issue": true,
+      "row": 10
+    },
+    {
+      "id": "V09-ok",
+      "split": "valid",
+      "scenario_family": "unix-seconds-to-date",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "15854e943ff8a3a308ee260fad485919c23fda5845c7b2626697a79f3e411e55",
+      "has_issue": false,
+      "row": 11
+    },
+    {
+      "id": "V06-bug",
+      "split": "valid",
+      "scenario_family": "finite-number-validation",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "33499b0117a916caacea30ddf5ba1aab4978e17af654c672b20fa218dd9f585b",
+      "has_issue": true,
+      "row": 12
+    },
+    {
+      "id": "V01-ok",
+      "split": "valid",
+      "scenario_family": "jsx-map-missing-return",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "8ff263687c6c22edbfc25ebd5ffcd7057b9030ff591f2b62379bf6377da2281c",
+      "has_issue": false,
+      "row": 13
+    },
+    {
+      "id": "V06-ok",
+      "split": "valid",
+      "scenario_family": "finite-number-validation",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "bea4198d96740ed651d41454e4b22a07b321cf40df3fa22245dd227716919639",
+      "has_issue": false,
+      "row": 14
+    },
+    {
+      "id": "V02-bug",
+      "split": "valid",
+      "scenario_family": "nullable-user-render",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "9866c9ba1f3512bbb841fd53c3711d74ef91024642de6364d5208da002d34ff2",
+      "has_issue": true,
+      "row": 15
+    },
+    {
+      "id": "V09-bug",
+      "split": "valid",
+      "scenario_family": "unix-seconds-to-date",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "25967e12b253a4b5cfd38a23c7115e4cde96ca74894588f682be59ec04439b0f",
+      "has_issue": true,
+      "row": 16
+    },
+    {
+      "id": "V04-ok",
+      "split": "valid",
+      "scenario_family": "debounce-previous-timer",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "635f502cc52431fd5e3d69f60fafef2612a12282e25b0a84d32a929f9af16818",
+      "has_issue": false,
+      "row": 17
+    },
+    {
+      "id": "V05-bug",
+      "split": "valid",
+      "scenario_family": "radio-group-name",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "044836edaff5cf9e8b22ba52f6e06b18b43b8fa52dc246ad5d86ed37d0ca9f96",
+      "has_issue": true,
+      "row": 18
+    },
+    {
+      "id": "V01-bug",
+      "split": "valid",
+      "scenario_family": "jsx-map-missing-return",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "4734e930f6e3e3acca697f9a97e81b49f2038026948d09fedc14e3af6f4e6f0a",
+      "has_issue": true,
+      "row": 19
+    },
+    {
+      "id": "V02-ok",
+      "split": "valid",
+      "scenario_family": "nullable-user-render",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "3ea350597d94353704b9e611ae56477055a1f19dc78553489b6143487b9ad947",
+      "has_issue": false,
+      "row": 20
+    },
+    {
+      "id": "E10-ok",
+      "split": "test",
+      "scenario_family": "ssr-browser-storage",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "e7572a551d7033c3c9b785db59eeda62333e2ee75e3bd7bf874843cb5c736304",
+      "has_issue": false,
+      "row": 1
+    },
+    {
+      "id": "E03-ok",
+      "split": "test",
+      "scenario_family": "image-fit-aspect-ratio",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "1774b41db9189db781d407c5bb2917565b1847ccb2bb48529516156207e2a0c6",
+      "has_issue": false,
+      "row": 2
+    },
+    {
+      "id": "E08-bug",
+      "split": "test",
+      "scenario_family": "reducer-default-state",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "497ddb301b22fddae224bfa92399755c2a7cd10542743a3c32af6a9a3ca998f8",
+      "has_issue": true,
+      "row": 3
+    },
+    {
+      "id": "E03-bug",
+      "split": "test",
+      "scenario_family": "image-fit-aspect-ratio",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "6c73c783c94fc0835d70cad56300d2034c377c96e09156c6aacbfa06f3d55b94",
+      "has_issue": true,
+      "row": 4
+    },
+    {
+      "id": "E05-ok",
+      "split": "test",
+      "scenario_family": "array-typeof-check",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "ac0ff04518b4d9596fc888d5a73493615265e9149cb7f5b35c87985929ac4760",
+      "has_issue": false,
+      "row": 5
+    },
+    {
+      "id": "E07-ok",
+      "split": "test",
+      "scenario_family": "async-script-dependency-order",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "465c765e5a77f4b1bdf38887545b6c344a768ec631e3bd5ac446acc627708c1d",
+      "has_issue": false,
+      "row": 6
+    },
+    {
+      "id": "E08-ok",
+      "split": "test",
+      "scenario_family": "reducer-default-state",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "83a05c260fa080e4bf4298deba821a029b0fb9bc73b6ceedc516f70774ce8307",
+      "has_issue": false,
+      "row": 7
+    },
+    {
+      "id": "E10-bug",
+      "split": "test",
+      "scenario_family": "ssr-browser-storage",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "896826e449fc6819f2f1cda6314ca667e2e06a4e03ae2d0ff1322dbd89c1ac6c",
+      "has_issue": true,
+      "row": 8
+    },
+    {
+      "id": "E04-bug",
+      "split": "test",
+      "scenario_family": "fractional-number-parsing",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "96d14e367c1a8bfe7b3e362f127ce97f088651e311b164c77ac3597e4e0c1db0",
+      "has_issue": true,
+      "row": 9
+    },
+    {
+      "id": "E07-bug",
+      "split": "test",
+      "scenario_family": "async-script-dependency-order",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "aaee4f5ca289f34cd932462106739a7cfe01895643576eab5dd21477cabd4477",
+      "has_issue": true,
+      "row": 10
+    },
+    {
+      "id": "E09-ok",
+      "split": "test",
+      "scenario_family": "array-fill-shared-object",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "43495907529dd3f365806c4409347f69f2860e7dbffecbb1383006a31f515164",
+      "has_issue": false,
+      "row": 11
+    },
+    {
+      "id": "E06-bug",
+      "split": "test",
+      "scenario_family": "storage-boolean-string",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "0fb1e8df7f8e45ae09ffa9b84fd543f24423b178ddb8b9e0e1c66fe533d2be86",
+      "has_issue": true,
+      "row": 12
+    },
+    {
+      "id": "E01-ok",
+      "split": "test",
+      "scenario_family": "cancel-button-submit",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "a2e77c6fa6cb187fb56dfedd805678320a8ab59e84819b48dbe5bd6cdd0d8bad",
+      "has_issue": false,
+      "row": 13
+    },
+    {
+      "id": "E06-ok",
+      "split": "test",
+      "scenario_family": "storage-boolean-string",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "0c026198cdef1d45362f81f471d768c3ed4443205f417a68446377afd444861a",
+      "has_issue": false,
+      "row": 14
+    },
+    {
+      "id": "E02-bug",
+      "split": "test",
+      "scenario_family": "box-sizing-total-width",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "cf236d7eed0743a4a5bac8462f4c63cc27f6221ea0d6ebcde29cfa2b60bd1d14",
+      "has_issue": true,
+      "row": 15
+    },
+    {
+      "id": "E09-bug",
+      "split": "test",
+      "scenario_family": "array-fill-shared-object",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "8718f59dc0e46c19100124bb07315badecc6d7308a27461d61cceaf85c0ba716",
+      "has_issue": true,
+      "row": 16
+    },
+    {
+      "id": "E04-ok",
+      "split": "test",
+      "scenario_family": "fractional-number-parsing",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "c24913f89af4ea633d7faf60c78081820a6d8aada6dcaf1cdf13bd0dbcefa921",
+      "has_issue": false,
+      "row": 17
+    },
+    {
+      "id": "E05-bug",
+      "split": "test",
+      "scenario_family": "array-typeof-check",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "69c9ab8a7aa6a5f66f2e1d7e54694f6344dc516659aa12eee4d6b18af109516c",
+      "has_issue": true,
+      "row": 18
+    },
+    {
+      "id": "E01-bug",
+      "split": "test",
+      "scenario_family": "cancel-button-submit",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "bedb255092766b95b4b1d424e3a4293e39ad0e15f4f604a918a2ba5a3f52ae0d",
+      "has_issue": true,
+      "row": 19
+    },
+    {
+      "id": "E02-ok",
+      "split": "test",
+      "scenario_family": "box-sizing-total-width",
+      "source": "assistant-authored-and-reviewed-synthetic-fixtures",
+      "code_sha256": "247e7d46e74942c64109eaa395c3f199b450429b34b8184d6d7bea6eb7b64911",
+      "has_issue": false,
+      "row": 20
+    }
+  ],
+  "file_sha256": {
+    "system.txt": "0e63f3432e7b2e9b213c3fbe9cbe9c333b6ea3638294b6b6224eb8bce276c6ec",
+    "response.schema.json": "59580803dd6d0bffa41a2398a9c066c2758aa3acd00651cbdc219854f94c5456",
+    "train.jsonl": "bff0dfe55d7495dde5e61f9234909387392485468ae6f89c28ba3ed545bb879e",
+    "valid.jsonl": "56c770e8e3a85ce11735d5862a2b532f9ed76c5a400623bf54b6a2e0c69222a8",
+    "test.jsonl": "86c55347e7cc4f5cce26fc8cc842d68018b249cb5e2a97d57c16f65a86fe248c"
+  }
+}

@@ -1,0 +1,1308 @@
+{
+  "model": "mlx-community/Qwen3-4B-4bit",
+  "revision": "4dcb3d101c2a062e5c1d4bb173588c54ea6c4d25",
+  "generation_config": {
+    "seed": 42,
+    "temperature": 0,
+    "enable_thinking": false,
+    "max_tokens": 512,
+    "independent_requests": true
+  },
+  "split": "valid",
+  "test_inference_performed": false,
+  "provenance": "Synthetic fixtures; assistant-authored labels and semantic review, not independent human evaluation. Responses unchanged; machine-local metadata omitted.",
+  "results": [
+    {
+      "id": "V01-bug",
+      "scenario_family": "jsx-map-missing-return",
+      "prompt_messages": [
+        {
+          "role": "system",
+          "content": "你是前端代码审查助手。只依据给出的代码和上下文，指出可确认的功能、资源释放、类型或可访问性问题；不要推测未提供的代码，不把风格偏好当缺陷。只输出一个合法 JSON 对象，不加 Markdown 代码围栏或额外说明。结构固定为 {\"issues\":[{\"line\":1,\"problem\":\"问题\",\"reason\":\"原因\",\"suggestion\":\"修改建议\"}]}。line 是代码块内从 1 开始的行号；每个问题都必须包含这四个字段，文字使用简洁中文，最多报告 3 个明确问题。没有可确认的问题时输出 {\"issues\":[]}。"
+        },
+        {
+          "role": "user",
+          "content": "文件：Menu.jsx\n上下文：entries 含唯一稳定 id 和非空 title；需要渲染每个菜单条目。\n代码：\n```jsx\nexport function Menu({ entries }) {\n  return <ul>{entries.map(entry => {\n    <li key={entry.id}>{entry.title}</li>;\n  })}</ul>;\n}\n```"
+        }
+      ],
+      "reference": {
+        "issues": [
+          {
+            "line": 3,
+            "problem": "map 的块回调没有返回 JSX。",
+            "reason": "每次回调得到 undefined，菜单没有条目显示。",
+            "suggestion": "在 li 前加 return 或使用隐式返回。"
+          }
+        ]
+      },
+      "runs": {
+        "base": {
+          "raw_response": "{\"issues\":[{\"line\":4,\"problem\":\"缺少闭合标签\",\"reason\":\"JSX元素必须正确闭合\",\"suggestion\":\"在map函数中添加闭合的括号或使用JSX片段\"}]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V01-bug",
+            "detects_gold": false,
+            "fix_usable": false,
+            "line_correct": false,
+            "extra_false_positives": 1,
+            "duplicate_issues": 0,
+            "notes": "漏掉块回调缺少 return。JSX 标签和括号已闭合，模型报的闭合问题不存在；建议不能恢复菜单条目。"
+          }
+        },
+        "round1": {
+          "raw_response": "{\"issues\":[]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V01-bug",
+            "detects_gold": false,
+            "fix_usable": false,
+            "line_correct": false,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "输出空 issues，漏掉预设缺陷：map 的块回调没有返回 JSX。 未提供定位或修复。"
+          }
+        },
+        "round2": {
+          "raw_response": "{\"issues\":[]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V01-bug",
+            "detects_gold": false,
+            "fix_usable": false,
+            "line_correct": false,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "第二轮仍输出空 issues，漏掉预设缺陷：map 的块回调没有返回 JSX。 未提供定位或修复。"
+          }
+        }
+      }
+    },
+    {
+      "id": "V01-ok",
+      "scenario_family": "jsx-map-missing-return",
+      "prompt_messages": [
+        {
+          "role": "system",
+          "content": "你是前端代码审查助手。只依据给出的代码和上下文，指出可确认的功能、资源释放、类型或可访问性问题；不要推测未提供的代码，不把风格偏好当缺陷。只输出一个合法 JSON 对象，不加 Markdown 代码围栏或额外说明。结构固定为 {\"issues\":[{\"line\":1,\"problem\":\"问题\",\"reason\":\"原因\",\"suggestion\":\"修改建议\"}]}。line 是代码块内从 1 开始的行号；每个问题都必须包含这四个字段，文字使用简洁中文，最多报告 3 个明确问题。没有可确认的问题时输出 {\"issues\":[]}。"
+        },
+        {
+          "role": "user",
+          "content": "文件：Menu.jsx\n上下文：entries 含唯一稳定 id 和非空 title；需要渲染每个菜单条目。\n代码：\n```jsx\nexport function Menu({ entries }) {\n  return <ul>{entries.map(entry => {\n    return <li key={entry.id}>{entry.title}</li>;\n  })}</ul>;\n}\n```"
+        }
+      ],
+      "reference": {
+        "issues": []
+      },
+      "runs": {
+        "base": {
+          "raw_response": "{\"issues\":[{\"line\":4,\"problem\":\"键值可能不唯一\",\"reason\":\"虽然 entry.id 是唯一稳定的，但没有验证 key 是否唯一\",\"suggestion\":\"在映射时添加对 key 唯一性的检查或确保 entry.id 是唯一标识符\"},{\"line\":4,\"problem\":\"没有处理 entries 为空的情况\",\"reason\":\"如果 entries 为空，将渲染一个空的 <ul>，但没有明确的错误处理\",\"suggestion\":\"添加对 entries 为空的处理逻辑，例如显示一个空消息或默认内容\"},{\"line\":4,\"problem\":\"没有对 entry.title 进行类型检查\",\"reason\":\"如果 entry.title 为 undefined 或 null，可能导致渲染问题\",\"suggestion\":\"在渲染前添加对 entry.title 的类型检查，例如使用 && 或默认值\"}]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V01-ok",
+            "detects_gold": null,
+            "fix_usable": null,
+            "line_correct": null,
+            "extra_false_positives": 3,
+            "duplicate_issues": 0,
+            "notes": "上下文已保证 id 唯一稳定、title 非空；空数组显示空列表不是已确认缺陷。三项均为误报。"
+          }
+        },
+        "round1": {
+          "raw_response": "{\"issues\":[]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V01-ok",
+            "detects_gold": null,
+            "fix_usable": null,
+            "line_correct": null,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "代码已经修复，空 issues 符合参考答案；需结合所有缺陷题也输出空列表判断，不能单独视为区分能力提升。"
+          }
+        },
+        "round2": {
+          "raw_response": "{\"issues\":[]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V01-ok",
+            "detects_gold": null,
+            "fix_usable": null,
+            "line_correct": null,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "修复后的代码返回空 issues，符合参考答案；但同一轮所有缺陷题也返回空列表，没有体现区分能力。"
+          }
+        }
+      }
+    },
+    {
+      "id": "V02-bug",
+      "scenario_family": "nullable-user-render",
+      "prompt_messages": [
+        {
+          "role": "system",
+          "content": "你是前端代码审查助手。只依据给出的代码和上下文，指出可确认的功能、资源释放、类型或可访问性问题；不要推测未提供的代码，不把风格偏好当缺陷。只输出一个合法 JSON 对象，不加 Markdown 代码围栏或额外说明。结构固定为 {\"issues\":[{\"line\":1,\"problem\":\"问题\",\"reason\":\"原因\",\"suggestion\":\"修改建议\"}]}。line 是代码块内从 1 开始的行号；每个问题都必须包含这四个字段，文字使用简洁中文，最多报告 3 个明确问题。没有可确认的问题时输出 {\"issues\":[]}。"
+        },
+        {
+          "role": "user",
+          "content": "文件：Greeting.jsx\n上下文：user 在加载时为 null，加载完成后为有 name 字段的对象；加载时应显示游客。\n代码：\n```jsx\nexport function Greeting({ user }) {\n  return <p>你好，{user.name}</p>;\n}\n```"
+        }
+      ],
+      "reference": {
+        "issues": [
+          {
+            "line": 2,
+            "problem": "直接读取可能为 null 的 user。",
+            "reason": "加载阶段访问 user.name 会抛错，组件无法显示。",
+            "suggestion": "使用可选链并提供游客占位。"
+          }
+        ]
+      },
+      "runs": {
+        "base": {
+          "raw_response": "{\"issues\":[{\"line\":2,\"problem\":\"user 可能为 null\",\"reason\":\"user 是一个可能为 null 的参数，直接访问 user.name 可能导致空指针异常\",\"suggestion\":\"在访问 user.name 之前添加 null 检查\"}]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V02-bug",
+            "detects_gold": true,
+            "fix_usable": true,
+            "line_correct": true,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "正确识别第 2 行 null 访问，给出先检查 null 的可实施方向。未写完整占位代码，但该方向能消除预设崩溃；实施时仍需按上下文显示游客。"
+          }
+        },
+        "round1": {
+          "raw_response": "{\"issues\":[]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V02-bug",
+            "detects_gold": false,
+            "fix_usable": false,
+            "line_correct": false,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "输出空 issues，漏掉预设缺陷：直接读取可能为 null 的 user。 未提供定位或修复。"
+          }
+        },
+        "round2": {
+          "raw_response": "{\"issues\":[]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V02-bug",
+            "detects_gold": false,
+            "fix_usable": false,
+            "line_correct": false,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "第二轮仍输出空 issues，漏掉预设缺陷：直接读取可能为 null 的 user。 未提供定位或修复。"
+          }
+        }
+      }
+    },
+    {
+      "id": "V02-ok",
+      "scenario_family": "nullable-user-render",
+      "prompt_messages": [
+        {
+          "role": "system",
+          "content": "你是前端代码审查助手。只依据给出的代码和上下文，指出可确认的功能、资源释放、类型或可访问性问题；不要推测未提供的代码，不把风格偏好当缺陷。只输出一个合法 JSON 对象，不加 Markdown 代码围栏或额外说明。结构固定为 {\"issues\":[{\"line\":1,\"problem\":\"问题\",\"reason\":\"原因\",\"suggestion\":\"修改建议\"}]}。line 是代码块内从 1 开始的行号；每个问题都必须包含这四个字段，文字使用简洁中文，最多报告 3 个明确问题。没有可确认的问题时输出 {\"issues\":[]}。"
+        },
+        {
+          "role": "user",
+          "content": "文件：Greeting.jsx\n上下文：user 在加载时为 null，加载完成后为有 name 字段的对象；加载时应显示游客。\n代码：\n```jsx\nexport function Greeting({ user }) {\n  return <p>你好，{user?.name ?? '游客'}</p>;\n}\n```"
+        }
+      ],
+      "reference": {
+        "issues": []
+      },
+      "runs": {
+        "base": {
+          "raw_response": "{\"issues\":[{\"line\":2,\"problem\":\"user 可能为 null\",\"reason\":\"在用户加载完成前，user 可能为 null，导致访问 user.name 时可能抛出错误\",\"suggestion\":\"在访问 user.name 之前应检查 user 是否为 null 或 undefined\"}]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V02-ok",
+            "detects_gold": null,
+            "fix_usable": null,
+            "line_correct": null,
+            "extra_false_positives": 1,
+            "duplicate_issues": 0,
+            "notes": "代码已使用 user?.name ?? '游客'，不会因 user 为 null 而抛错；模型忽略了现有保护。"
+          }
+        },
+        "round1": {
+          "raw_response": "{\"issues\":[]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V02-ok",
+            "detects_gold": null,
+            "fix_usable": null,
+            "line_correct": null,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "代码已经修复，空 issues 符合参考答案；需结合所有缺陷题也输出空列表判断，不能单独视为区分能力提升。"
+          }
+        },
+        "round2": {
+          "raw_response": "{\"issues\":[]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V02-ok",
+            "detects_gold": null,
+            "fix_usable": null,
+            "line_correct": null,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "修复后的代码返回空 issues，符合参考答案；但同一轮所有缺陷题也返回空列表，没有体现区分能力。"
+          }
+        }
+      }
+    },
+    {
+      "id": "V03-bug",
+      "scenario_family": "memo-length-only-dependency",
+      "prompt_messages": [
+        {
+          "role": "system",
+          "content": "你是前端代码审查助手。只依据给出的代码和上下文，指出可确认的功能、资源释放、类型或可访问性问题；不要推测未提供的代码，不把风格偏好当缺陷。只输出一个合法 JSON 对象，不加 Markdown 代码围栏或额外说明。结构固定为 {\"issues\":[{\"line\":1,\"problem\":\"问题\",\"reason\":\"原因\",\"suggestion\":\"修改建议\"}]}。line 是代码块内从 1 开始的行号；每个问题都必须包含这四个字段，文字使用简洁中文，最多报告 3 个明确问题。没有可确认的问题时输出 {\"issues\":[]}。"
+        },
+        {
+          "role": "user",
+          "content": "文件：CartTotal.jsx\n上下文：items 为价格对象数组；父组件不可变更新价格，即生成新数组，条目数量可以不变；需要显示最新总价。\n代码：\n```jsx\nimport { useMemo } from 'react';\nexport function CartTotal({ items }) {\n  const total = useMemo(() => items.reduce((sum, item) => sum + item.price, 0), [items.length]);\n  return <output>{total}</output>;\n}\n```"
+        }
+      ],
+      "reference": {
+        "issues": [
+          {
+            "line": 3,
+            "problem": "useMemo 只依赖数组长度。",
+            "reason": "同数量的商品价格更新后不会重新计算，总价过期。",
+            "suggestion": "把 items 引用加入依赖，或直接计算。"
+          }
+        ]
+      },
+      "runs": {
+        "base": {
+          "raw_response": "{\"issues\":[{\"line\":5,\"problem\":\"依赖项不准确\",\"reason\":\"useMemo的依赖项是items.length，但items可能包含可变对象，而数组的长度变化并不一定反映数据的变化，可能导致不必要的重新计算\",\"suggestion\":\"将依赖项改为items本身，或者在依赖项中包含所有可能变化的值，如items的引用或特定属性\"}]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V03-bug",
+            "detects_gold": false,
+            "partial_detection": true,
+            "fix_usable": true,
+            "line_correct": false,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "点到依赖问题且建议 [items] 正确，但把后果写成不必要的重新计算，未说明同长度更新导致漏算；按完整因果识别标准只算部分命中。第 5 行是闭括号，致错依赖位于第 3 行。"
+          }
+        },
+        "round1": {
+          "raw_response": "{\"issues\":[]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V03-bug",
+            "detects_gold": false,
+            "fix_usable": false,
+            "line_correct": false,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "输出空 issues，漏掉预设缺陷：useMemo 只依赖数组长度。 未提供定位或修复。"
+          }
+        },
+        "round2": {
+          "raw_response": "{\"issues\":[]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V03-bug",
+            "detects_gold": false,
+            "fix_usable": false,
+            "line_correct": false,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "第二轮仍输出空 issues，漏掉预设缺陷：useMemo 只依赖数组长度。 未提供定位或修复。"
+          }
+        }
+      }
+    },
+    {
+      "id": "V03-ok",
+      "scenario_family": "memo-length-only-dependency",
+      "prompt_messages": [
+        {
+          "role": "system",
+          "content": "你是前端代码审查助手。只依据给出的代码和上下文，指出可确认的功能、资源释放、类型或可访问性问题；不要推测未提供的代码，不把风格偏好当缺陷。只输出一个合法 JSON 对象，不加 Markdown 代码围栏或额外说明。结构固定为 {\"issues\":[{\"line\":1,\"problem\":\"问题\",\"reason\":\"原因\",\"suggestion\":\"修改建议\"}]}。line 是代码块内从 1 开始的行号；每个问题都必须包含这四个字段，文字使用简洁中文，最多报告 3 个明确问题。没有可确认的问题时输出 {\"issues\":[]}。"
+        },
+        {
+          "role": "user",
+          "content": "文件：CartTotal.jsx\n上下文：items 为价格对象数组；父组件不可变更新价格，即生成新数组，条目数量可以不变；需要显示最新总价。\n代码：\n```jsx\nimport { useMemo } from 'react';\nexport function CartTotal({ items }) {\n  const total = useMemo(() => items.reduce((sum, item) => sum + item.price, 0), [items]);\n  return <output>{total}</output>;\n}\n```"
+        }
+      ],
+      "reference": {
+        "issues": []
+      },
+      "runs": {
+        "base": {
+          "raw_response": "{\"issues\":[{\"line\":5,\"problem\":\"未处理 items 为空的情况\",\"reason\":\"当 items 为空时，reduce 可能返回初始值 0，但未明确处理此情况\",\"suggestion\":\"添加对 items 为空的判断或提示信息\"},{\"line\":6,\"problem\":\"未释放资源\",\"reason\":\"未使用任何外部资源或内存，因此无需释放资源\",\"suggestion\":\"无\"},{\"line\":7,\"problem\":\"未处理 item.price 为非数字的情况\",\"reason\":\"若 item.price 为非数字，reduce 可能返回错误结果\",\"suggestion\":\"添加对 item.price 的类型检查\"}]}",
+          "schema_valid": false,
+          "schema_error": "问题行号超出代码范围",
+          "review": {
+            "id": "V03-ok",
+            "detects_gold": null,
+            "fix_usable": null,
+            "line_correct": null,
+            "extra_false_positives": 3,
+            "duplicate_issues": 0,
+            "notes": "reduce 已有初始值；模型自己说明没有外部资源却仍报未释放；上下文未支持非法 price 推测。另有第 6/7 行超出五行代码范围。"
+          }
+        },
+        "round1": {
+          "raw_response": "{\"issues\":[]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V03-ok",
+            "detects_gold": null,
+            "fix_usable": null,
+            "line_correct": null,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "代码已经修复，空 issues 符合参考答案；需结合所有缺陷题也输出空列表判断，不能单独视为区分能力提升。"
+          }
+        },
+        "round2": {
+          "raw_response": "{\"issues\":[]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V03-ok",
+            "detects_gold": null,
+            "fix_usable": null,
+            "line_correct": null,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "修复后的代码返回空 issues，符合参考答案；但同一轮所有缺陷题也返回空列表，没有体现区分能力。"
+          }
+        }
+      }
+    },
+    {
+      "id": "V04-bug",
+      "scenario_family": "debounce-previous-timer",
+      "prompt_messages": [
+        {
+          "role": "system",
+          "content": "你是前端代码审查助手。只依据给出的代码和上下文，指出可确认的功能、资源释放、类型或可访问性问题；不要推测未提供的代码，不把风格偏好当缺陷。只输出一个合法 JSON 对象，不加 Markdown 代码围栏或额外说明。结构固定为 {\"issues\":[{\"line\":1,\"problem\":\"问题\",\"reason\":\"原因\",\"suggestion\":\"修改建议\"}]}。line 是代码块内从 1 开始的行号；每个问题都必须包含这四个字段，文字使用简洁中文，最多报告 3 个明确问题。没有可确认的问题时输出 {\"issues\":[]}。"
+        },
+        {
+          "role": "user",
+          "content": "文件：debounce.js\n上下文：返回的函数会重复调用；要求连续调用后只在最后一次的 wait 毫秒后执行 fn 一次，fn 不使用 this。\n代码：\n```js\nfunction debounce(fn, wait) {\n  let timer;\n  return (...args) => {\n    timer = setTimeout(() => fn(...args), wait);\n  };\n}\n```"
+        }
+      ],
+      "reference": {
+        "issues": [
+          {
+            "line": 4,
+            "problem": "新调用没有取消前一个定时器。",
+            "reason": "连续调用会各自执行一次，无法实现防抖。",
+            "suggestion": "每次预约前 clearTimeout(timer)。"
+          }
+        ]
+      },
+      "runs": {
+        "base": {
+          "raw_response": "{\n  \"issues\": [\n    {\n      \"line\": 5,\n      \"problem\": \"重复调用问题\",\n      \"reason\": \"每次调用返回的函数都会设置一个新的定时器，导致之前的定时器未被清除，可能引发多次执行\",\n      \"suggestion\": \"添加对旧定时器的清除逻辑，例如在函数内部使用 clearTimeout(timer) 来避免重复调用\"\n    },\n    {\n      \"line\": 6,\n      \"problem\": \"未处理连续调用\",\n      \"reason\": \"如果在定时器未完成前再次调用函数，会覆盖之前的定时器，但未明确处理这种场景\",\n      \"suggestion\": \"在函数内部添加 clearTimeout(timer) 以确保在新调用时清除旧的定时器\"\n    },\n    {\n      \"line\": 7,\n      \"problem\": \"this 未被处理\",\n      \"reason\": \"函数 fn 被调用时没有绑定 this，可能导致上下文丢失\",\n      \"suggestion\": \"使用 fn.bind(null, ...args) 或者直接使用 fn(...args) 来确保 this 不被使用\"\n    }\n  ]\n}",
+          "schema_valid": false,
+          "schema_error": "问题行号超出代码范围",
+          "review": {
+            "id": "V04-bug",
+            "detects_gold": true,
+            "fix_usable": true,
+            "line_correct": false,
+            "extra_false_positives": 1,
+            "duplicate_issues": 1,
+            "notes": "正确识别旧 timer 未取消并建议 clearTimeout；两条重复描述此缺陷。额外 this 问题与上下文 fn 不使用 this 冲突，第 7 行越界，主要缺陷应定位第 4 行。"
+          }
+        },
+        "round1": {
+          "raw_response": "{\"issues\":[]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V04-bug",
+            "detects_gold": false,
+            "fix_usable": false,
+            "line_correct": false,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "输出空 issues，漏掉预设缺陷：新调用没有取消前一个定时器。 未提供定位或修复。"
+          }
+        },
+        "round2": {
+          "raw_response": "{\"issues\":[]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V04-bug",
+            "detects_gold": false,
+            "fix_usable": false,
+            "line_correct": false,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "第二轮仍输出空 issues，漏掉预设缺陷：新调用没有取消前一个定时器。 未提供定位或修复。"
+          }
+        }
+      }
+    },
+    {
+      "id": "V04-ok",
+      "scenario_family": "debounce-previous-timer",
+      "prompt_messages": [
+        {
+          "role": "system",
+          "content": "你是前端代码审查助手。只依据给出的代码和上下文，指出可确认的功能、资源释放、类型或可访问性问题；不要推测未提供的代码，不把风格偏好当缺陷。只输出一个合法 JSON 对象，不加 Markdown 代码围栏或额外说明。结构固定为 {\"issues\":[{\"line\":1,\"problem\":\"问题\",\"reason\":\"原因\",\"suggestion\":\"修改建议\"}]}。line 是代码块内从 1 开始的行号；每个问题都必须包含这四个字段，文字使用简洁中文，最多报告 3 个明确问题。没有可确认的问题时输出 {\"issues\":[]}。"
+        },
+        {
+          "role": "user",
+          "content": "文件：debounce.js\n上下文：返回的函数会重复调用；要求连续调用后只在最后一次的 wait 毫秒后执行 fn 一次，fn 不使用 this。\n代码：\n```js\nfunction debounce(fn, wait) {\n  let timer;\n  return (...args) => {\n    clearTimeout(timer);\n    timer = setTimeout(() => fn(...args), wait);\n  };\n}\n```"
+        }
+      ],
+      "reference": {
+        "issues": []
+      },
+      "runs": {
+        "base": {
+          "raw_response": "{\"issues\":[{\"line\":4,\"problem\":\"函数重复调用\",\"reason\":\"在连续调用时，每次调用都会清除并设置新的定时器，但未处理定时器的取消逻辑，可能导致多个定时器同时存在\",\"suggestion\":\"在函数返回后，应确保在调用结束后清除定时器，或在函数内部添加对定时器的管理逻辑\"}]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V04-ok",
+            "detects_gold": null,
+            "fix_usable": null,
+            "line_correct": null,
+            "extra_false_positives": 1,
+            "duplicate_issues": 0,
+            "notes": "第 4 行已在新建 timer 前执行 clearTimeout；不会因连续调用而同时保留多个待执行 timer。模型的误报与现有代码矛盾。"
+          }
+        },
+        "round1": {
+          "raw_response": "{\"issues\":[]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V04-ok",
+            "detects_gold": null,
+            "fix_usable": null,
+            "line_correct": null,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "代码已经修复，空 issues 符合参考答案；需结合所有缺陷题也输出空列表判断，不能单独视为区分能力提升。"
+          }
+        },
+        "round2": {
+          "raw_response": "{\"issues\":[]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V04-ok",
+            "detects_gold": null,
+            "fix_usable": null,
+            "line_correct": null,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "修复后的代码返回空 issues，符合参考答案；但同一轮所有缺陷题也返回空列表，没有体现区分能力。"
+          }
+        }
+      }
+    },
+    {
+      "id": "V05-bug",
+      "scenario_family": "radio-group-name",
+      "prompt_messages": [
+        {
+          "role": "system",
+          "content": "你是前端代码审查助手。只依据给出的代码和上下文，指出可确认的功能、资源释放、类型或可访问性问题；不要推测未提供的代码，不把风格偏好当缺陷。只输出一个合法 JSON 对象，不加 Markdown 代码围栏或额外说明。结构固定为 {\"issues\":[{\"line\":1,\"problem\":\"问题\",\"reason\":\"原因\",\"suggestion\":\"修改建议\"}]}。line 是代码块内从 1 开始的行号；每个问题都必须包含这四个字段，文字使用简洁中文，最多报告 3 个明确问题。没有可确认的问题时输出 {\"issues\":[]}。"
+        },
+        {
+          "role": "user",
+          "content": "文件：Shipping.html\n上下文：同一配送方式必须二选一；没有 JS 接管，也没有其他表单控件。\n代码：\n```html\n<fieldset>\n  <legend>配送方式</legend>\n  <label><input type=\"radio\" value=\"standard\">普通</label>\n  <label><input type=\"radio\" value=\"express\">加急</label>\n</fieldset>\n```"
+        }
+      ],
+      "reference": {
+        "issues": [
+          {
+            "line": 3,
+            "problem": "单选按钮未通过 name 组成同一组。",
+            "reason": "没有共享的非空 name 时，两项不会互相取消，可以同时选中。",
+            "suggestion": "给两个 input 设置相同的 name。"
+          }
+        ]
+      },
+      "runs": {
+        "base": {
+          "raw_response": "{\"issues\":[]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V05-bug",
+            "detects_gold": false,
+            "fix_usable": false,
+            "line_correct": false,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "输出空 issues，漏掉 radio 缺少共享 name，未给修复。"
+          }
+        },
+        "round1": {
+          "raw_response": "{\"issues\":[]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V05-bug",
+            "detects_gold": false,
+            "fix_usable": false,
+            "line_correct": false,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "输出空 issues，漏掉预设缺陷：单选按钮未通过 name 组成同一组。 未提供定位或修复。"
+          }
+        },
+        "round2": {
+          "raw_response": "{\"issues\":[]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V05-bug",
+            "detects_gold": false,
+            "fix_usable": false,
+            "line_correct": false,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "第二轮仍输出空 issues，漏掉预设缺陷：单选按钮未通过 name 组成同一组。 未提供定位或修复。"
+          }
+        }
+      }
+    },
+    {
+      "id": "V05-ok",
+      "scenario_family": "radio-group-name",
+      "prompt_messages": [
+        {
+          "role": "system",
+          "content": "你是前端代码审查助手。只依据给出的代码和上下文，指出可确认的功能、资源释放、类型或可访问性问题；不要推测未提供的代码，不把风格偏好当缺陷。只输出一个合法 JSON 对象，不加 Markdown 代码围栏或额外说明。结构固定为 {\"issues\":[{\"line\":1,\"problem\":\"问题\",\"reason\":\"原因\",\"suggestion\":\"修改建议\"}]}。line 是代码块内从 1 开始的行号；每个问题都必须包含这四个字段，文字使用简洁中文，最多报告 3 个明确问题。没有可确认的问题时输出 {\"issues\":[]}。"
+        },
+        {
+          "role": "user",
+          "content": "文件：Shipping.html\n上下文：同一配送方式必须二选一；没有 JS 接管，也没有其他表单控件。\n代码：\n```html\n<fieldset>\n  <legend>配送方式</legend>\n  <label><input type=\"radio\" name=\"shipping\" value=\"standard\">普通</label>\n  <label><input type=\"radio\" name=\"shipping\" value=\"express\">加急</label>\n</fieldset>\n```"
+        }
+      ],
+      "reference": {
+        "issues": []
+      },
+      "runs": {
+        "base": {
+          "raw_response": "{\"issues\":[]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V05-ok",
+            "detects_gold": null,
+            "fix_usable": null,
+            "line_correct": null,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "两项 radio 已有相同 name，模型正确输出空 issues。"
+          }
+        },
+        "round1": {
+          "raw_response": "{\"issues\":[]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V05-ok",
+            "detects_gold": null,
+            "fix_usable": null,
+            "line_correct": null,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "代码已经修复，空 issues 符合参考答案；需结合所有缺陷题也输出空列表判断，不能单独视为区分能力提升。"
+          }
+        },
+        "round2": {
+          "raw_response": "{\"issues\":[]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V05-ok",
+            "detects_gold": null,
+            "fix_usable": null,
+            "line_correct": null,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "修复后的代码返回空 issues，符合参考答案；但同一轮所有缺陷题也返回空列表，没有体现区分能力。"
+          }
+        }
+      }
+    },
+    {
+      "id": "V06-bug",
+      "scenario_family": "finite-number-validation",
+      "prompt_messages": [
+        {
+          "role": "system",
+          "content": "你是前端代码审查助手。只依据给出的代码和上下文，指出可确认的功能、资源释放、类型或可访问性问题；不要推测未提供的代码，不把风格偏好当缺陷。只输出一个合法 JSON 对象，不加 Markdown 代码围栏或额外说明。结构固定为 {\"issues\":[{\"line\":1,\"problem\":\"问题\",\"reason\":\"原因\",\"suggestion\":\"修改建议\"}]}。line 是代码块内从 1 开始的行号；每个问题都必须包含这四个字段，文字使用简洁中文，最多报告 3 个明确问题。没有可确认的问题时输出 {\"issues\":[]}。"
+        },
+        {
+          "role": "user",
+          "content": "文件：parseAmount.js\n上下文：接受 Number 能解析的有限数值，拒绝 NaN、Infinity、-Infinity 并返回 null；空白输入按 Number 规则处理。\n代码：\n```js\nfunction parseAmount(text) {\n  const value = Number(text);\n  return Number.isNaN(value) ? null : value;\n}\n```"
+        }
+      ],
+      "reference": {
+        "issues": [
+          {
+            "line": 3,
+            "problem": "仅排除 NaN，没有排除无穷大。",
+            "reason": "Infinity 不是 NaN，会被错误地当作有效金额返回。",
+            "suggestion": "使用 Number.isFinite 判断有限数字。"
+          }
+        ]
+      },
+      "runs": {
+        "base": {
+          "raw_response": "{\"issues\":[{\"line\":4,\"problem\":\"未处理 Infinity 和 -Infinity\",\"reason\":\"代码未明确拒绝 Infinity 和 -Infinity，尽管 Number.isNaN 会返回 false 用于这些值\",\"suggestion\":\"添加对 Infinity 和 -Infinity 的显式检查并返回 null\"}]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V06-bug",
+            "detects_gold": true,
+            "fix_usable": true,
+            "line_correct": false,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "正确识别无穷值会通过 NaN 检查，显式排除正负 Infinity 是可用修复；标注第 4 行是函数闭括号，实际判断在第 3 行。"
+          }
+        },
+        "round1": {
+          "raw_response": "{\"issues\":[]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V06-bug",
+            "detects_gold": false,
+            "fix_usable": false,
+            "line_correct": false,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "输出空 issues，漏掉预设缺陷：仅排除 NaN，没有排除无穷大。 未提供定位或修复。"
+          }
+        },
+        "round2": {
+          "raw_response": "{\"issues\":[]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V06-bug",
+            "detects_gold": false,
+            "fix_usable": false,
+            "line_correct": false,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "第二轮仍输出空 issues，漏掉预设缺陷：仅排除 NaN，没有排除无穷大。 未提供定位或修复。"
+          }
+        }
+      }
+    },
+    {
+      "id": "V06-ok",
+      "scenario_family": "finite-number-validation",
+      "prompt_messages": [
+        {
+          "role": "system",
+          "content": "你是前端代码审查助手。只依据给出的代码和上下文，指出可确认的功能、资源释放、类型或可访问性问题；不要推测未提供的代码，不把风格偏好当缺陷。只输出一个合法 JSON 对象，不加 Markdown 代码围栏或额外说明。结构固定为 {\"issues\":[{\"line\":1,\"problem\":\"问题\",\"reason\":\"原因\",\"suggestion\":\"修改建议\"}]}。line 是代码块内从 1 开始的行号；每个问题都必须包含这四个字段，文字使用简洁中文，最多报告 3 个明确问题。没有可确认的问题时输出 {\"issues\":[]}。"
+        },
+        {
+          "role": "user",
+          "content": "文件：parseAmount.js\n上下文：接受 Number 能解析的有限数值，拒绝 NaN、Infinity、-Infinity 并返回 null；空白输入按 Number 规则处理。\n代码：\n```js\nfunction parseAmount(text) {\n  const value = Number(text);\n  return Number.isFinite(value) ? value : null;\n}\n```"
+        }
+      ],
+      "reference": {
+        "issues": []
+      },
+      "runs": {
+        "base": {
+          "raw_response": "{\"issues\":[{\"line\":4,\"problem\":\"类型或可访问性问题\",\"reason\":\"Number.isFinite(value) 返回布尔值，而非数值，导致返回值类型不一致\",\"suggestion\":\"将返回值改为 Number.isFinite(value) ? value : null\"}]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V06-ok",
+            "detects_gold": null,
+            "fix_usable": null,
+            "line_correct": null,
+            "extra_false_positives": 1,
+            "duplicate_issues": 0,
+            "notes": "Number.isFinite 是三元表达式的条件，函数返回 value 或 null；模型建议的表达式正是现有代码，属于明确误报。"
+          }
+        },
+        "round1": {
+          "raw_response": "{\"issues\":[]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V06-ok",
+            "detects_gold": null,
+            "fix_usable": null,
+            "line_correct": null,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "代码已经修复，空 issues 符合参考答案；需结合所有缺陷题也输出空列表判断，不能单独视为区分能力提升。"
+          }
+        },
+        "round2": {
+          "raw_response": "{\"issues\":[]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V06-ok",
+            "detects_gold": null,
+            "fix_usable": null,
+            "line_correct": null,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "修复后的代码返回空 issues，符合参考答案；但同一轮所有缺陷题也返回空列表，没有体现区分能力。"
+          }
+        }
+      }
+    },
+    {
+      "id": "V07-bug",
+      "scenario_family": "aborted-controller-reuse",
+      "prompt_messages": [
+        {
+          "role": "system",
+          "content": "你是前端代码审查助手。只依据给出的代码和上下文，指出可确认的功能、资源释放、类型或可访问性问题；不要推测未提供的代码，不把风格偏好当缺陷。只输出一个合法 JSON 对象，不加 Markdown 代码围栏或额外说明。结构固定为 {\"issues\":[{\"line\":1,\"problem\":\"问题\",\"reason\":\"原因\",\"suggestion\":\"修改建议\"}]}。line 是代码块内从 1 开始的行号；每个问题都必须包含这四个字段，文字使用简洁中文，最多报告 3 个明确问题。没有可确认的问题时输出 {\"issues\":[]}。"
+        },
+        {
+          "role": "user",
+          "content": "文件：latestLoader.js\n上下文：每次 load 取消之前请求并发起新请求；调用方处理取消异常；fetch 和 AbortController 是标准浏览器 API。\n代码：\n```js\nfunction latestLoader() {\n  let controller = new AbortController();\n  return function load(url) {\n    controller.abort();\n    return fetch(url, { signal: controller.signal });\n  };\n}\n```"
+        }
+      ],
+      "reference": {
+        "issues": [
+          {
+            "line": 4,
+            "problem": "新请求复用了已中止的 signal。",
+            "reason": "AbortController 中止后不能复位，新 fetch 会立即取消。",
+            "suggestion": "取消旧控制器后为新请求创建新的 AbortController。"
+          }
+        ]
+      },
+      "runs": {
+        "base": {
+          "raw_response": "{\"issues\":[{\"line\":3,\"problem\":\"资源未释放\",\"reason\":\"AbortController 实例在函数返回后可能未被正确释放\",\"suggestion\":\"在函数返回后应显式释放 AbortController 实例或使用 try...finally 结构\"}},{\"line\":4,\"problem\":\"未处理异常\",\"reason\":\"fetch 可能会抛出异常但未被处理\",\"suggestion\":\"应添加 try...catch 块来处理可能的异常\"},{\"line\":5,\"problem\":\"未释放信号\",\"reason\":\"每次调用 load 时会创建新的 AbortController 但未释放旧的控制器\",\"suggestion\":\"应确保在函数返回后释放旧的控制器实例\"}]}",
+          "schema_valid": false,
+          "schema_error": "Expecting ',' delimiter: line 1 column 150 (char 149)",
+          "review": {
+            "id": "V07-bug",
+            "detects_gold": false,
+            "fix_usable": false,
+            "line_correct": false,
+            "extra_false_positives": 3,
+            "duplicate_issues": 0,
+            "notes": "未发现已 abort 的 signal 被复用，虚构 AbortController/信号需要手工释放；异常由调用方处理已写在上下文。原始 JSON 还多了一个 }，未修复后再计分。"
+          }
+        },
+        "round1": {
+          "raw_response": "{\"issues\":[]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V07-bug",
+            "detects_gold": false,
+            "fix_usable": false,
+            "line_correct": false,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "输出空 issues，漏掉预设缺陷：新请求复用了已中止的 signal。 未提供定位或修复。"
+          }
+        },
+        "round2": {
+          "raw_response": "{\"issues\":[]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V07-bug",
+            "detects_gold": false,
+            "fix_usable": false,
+            "line_correct": false,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "第二轮仍输出空 issues，漏掉预设缺陷：新请求复用了已中止的 signal。 未提供定位或修复。"
+          }
+        }
+      }
+    },
+    {
+      "id": "V07-ok",
+      "scenario_family": "aborted-controller-reuse",
+      "prompt_messages": [
+        {
+          "role": "system",
+          "content": "你是前端代码审查助手。只依据给出的代码和上下文，指出可确认的功能、资源释放、类型或可访问性问题；不要推测未提供的代码，不把风格偏好当缺陷。只输出一个合法 JSON 对象，不加 Markdown 代码围栏或额外说明。结构固定为 {\"issues\":[{\"line\":1,\"problem\":\"问题\",\"reason\":\"原因\",\"suggestion\":\"修改建议\"}]}。line 是代码块内从 1 开始的行号；每个问题都必须包含这四个字段，文字使用简洁中文，最多报告 3 个明确问题。没有可确认的问题时输出 {\"issues\":[]}。"
+        },
+        {
+          "role": "user",
+          "content": "文件：latestLoader.js\n上下文：每次 load 取消之前请求并发起新请求；调用方处理取消异常；fetch 和 AbortController 是标准浏览器 API。\n代码：\n```js\nfunction latestLoader() {\n  let controller = new AbortController();\n  return function load(url) {\n    controller.abort();\n    controller = new AbortController();\n    return fetch(url, { signal: controller.signal });\n  };\n}\n```"
+        }
+      ],
+      "reference": {
+        "issues": []
+      },
+      "runs": {
+        "base": {
+          "raw_response": "{\"issues\":[{\"line\":3,\"problem\":\"资源未释放\",\"reason\":\"每次调用 load 时都会创建新的 AbortController 实例，但旧的控制器未被正确释放或清理\",\"suggestion\":\"考虑在函数作用域或对象销毁时释放控制器资源，或使用更合适的资源管理方式\"},{\"line\":5,\"problem\":\"异常处理不明确\",\"reason\":\"调用方需要处理取消请求的异常，但代码中未明确处理 AbortError 或其他可能的异常\",\"suggestion\":\"添加对 fetch 异常的处理逻辑，例如捕获 AbortError 或其他错误类型\"},{\"line\":5,\"problem\":\"信号传递不明确\",\"reason\":\"使用 AbortController.signal 作为 fetch 的 signal 参数，但未明确说明如何处理信号被中止的情况\",\"suggestion\":\"在 fetch 调用后添加对 abort 事件的处理，或在调用方中明确处理信号被中止的逻辑\"}]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V07-ok",
+            "detects_gold": null,
+            "fix_usable": null,
+            "line_correct": null,
+            "extra_false_positives": 3,
+            "duplicate_issues": 0,
+            "notes": "旧请求已 abort，新请求使用新控制器；标准 API 不要求手工释放控制器。上下文已说明调用方处理取消异常，其他两项也没有可确认依据。"
+          }
+        },
+        "round1": {
+          "raw_response": "{\"issues\":[]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V07-ok",
+            "detects_gold": null,
+            "fix_usable": null,
+            "line_correct": null,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "代码已经修复，空 issues 符合参考答案；需结合所有缺陷题也输出空列表判断，不能单独视为区分能力提升。"
+          }
+        },
+        "round2": {
+          "raw_response": "{\"issues\":[]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V07-ok",
+            "detects_gold": null,
+            "fix_usable": null,
+            "line_correct": null,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "修复后的代码返回空 issues，符合参考答案；但同一轮所有缺陷题也返回空列表，没有体现区分能力。"
+          }
+        }
+      }
+    },
+    {
+      "id": "V08-bug",
+      "scenario_family": "route-query-hash",
+      "prompt_messages": [
+        {
+          "role": "system",
+          "content": "你是前端代码审查助手。只依据给出的代码和上下文，指出可确认的功能、资源释放、类型或可访问性问题；不要推测未提供的代码，不把风格偏好当缺陷。只输出一个合法 JSON 对象，不加 Markdown 代码围栏或额外说明。结构固定为 {\"issues\":[{\"line\":1,\"problem\":\"问题\",\"reason\":\"原因\",\"suggestion\":\"修改建议\"}]}。line 是代码块内从 1 开始的行号；每个问题都必须包含这四个字段，文字使用简洁中文，最多报告 3 个明确问题。没有可确认的问题时输出 {\"issues\":[]}。"
+        },
+        {
+          "role": "user",
+          "content": "文件：isSettings.js\n上下文：url 始终是合法绝对 URL；路径恰好为 /settings 即返回 true，查询参数和 hash 不影响判定。\n代码：\n```js\nfunction isSettings(url) {\n  return url.endsWith('/settings');\n}\n```"
+        }
+      ],
+      "reference": {
+        "issues": [
+          {
+            "line": 2,
+            "problem": "对整个 URL 做结尾匹配。",
+            "reason": "带 query 或 hash 的设置页会被误判，其他路径的查询值也可能造成误判。",
+            "suggestion": "解析 URL 后仅比较 pathname。"
+          }
+        ]
+      },
+      "runs": {
+        "base": {
+          "raw_response": "{\"issues\":[{\"line\":1,\"problem\":\"功能不完整\",\"reason\":\"未考虑路径为 /settings 但带有查询参数或 hash 的情况\",\"suggestion\":\"应检查路径是否为 /settings，无论是否有查询参数或 hash\"}]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V08-bug",
+            "detects_gold": true,
+            "fix_usable": false,
+            "partial_fix": true,
+            "line_correct": false,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "正确指出 query/hash 会影响结尾匹配。但建议仅重述路径判定要求，未给出解析 URL/读取 pathname 等具体方法，按可实施修复标准不计分；第 1 行是声明，错误表达式在第 2 行。"
+          }
+        },
+        "round1": {
+          "raw_response": "{\"issues\":[]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V08-bug",
+            "detects_gold": false,
+            "fix_usable": false,
+            "line_correct": false,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "输出空 issues，漏掉预设缺陷：对整个 URL 做结尾匹配。 未提供定位或修复。"
+          }
+        },
+        "round2": {
+          "raw_response": "{\"issues\":[]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V08-bug",
+            "detects_gold": false,
+            "fix_usable": false,
+            "line_correct": false,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "第二轮仍输出空 issues，漏掉预设缺陷：对整个 URL 做结尾匹配。 未提供定位或修复。"
+          }
+        }
+      }
+    },
+    {
+      "id": "V08-ok",
+      "scenario_family": "route-query-hash",
+      "prompt_messages": [
+        {
+          "role": "system",
+          "content": "你是前端代码审查助手。只依据给出的代码和上下文，指出可确认的功能、资源释放、类型或可访问性问题；不要推测未提供的代码，不把风格偏好当缺陷。只输出一个合法 JSON 对象，不加 Markdown 代码围栏或额外说明。结构固定为 {\"issues\":[{\"line\":1,\"problem\":\"问题\",\"reason\":\"原因\",\"suggestion\":\"修改建议\"}]}。line 是代码块内从 1 开始的行号；每个问题都必须包含这四个字段，文字使用简洁中文，最多报告 3 个明确问题。没有可确认的问题时输出 {\"issues\":[]}。"
+        },
+        {
+          "role": "user",
+          "content": "文件：isSettings.js\n上下文：url 始终是合法绝对 URL；路径恰好为 /settings 即返回 true，查询参数和 hash 不影响判定。\n代码：\n```js\nfunction isSettings(url) {\n  return new URL(url).pathname === '/settings';\n}\n```"
+        }
+      ],
+      "reference": {
+        "issues": []
+      },
+      "runs": {
+        "base": {
+          "raw_response": "{\"issues\":[{\"line\":1,\"problem\":\"函数命名不清晰\",\"reason\":\"函数名 isSettings 可能让读者误解其功能，因为函数返回的是 URL 的 pathname 而不是判断是否为设置页面\",\"suggestion\":\"将函数重命名为更明确的名称，例如 'isPathSettings' 或 'isSettingsPath'\"}]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V08-ok",
+            "detects_gold": null,
+            "fix_usable": null,
+            "line_correct": null,
+            "extra_false_positives": 1,
+            "duplicate_issues": 0,
+            "notes": "函数实际返回 pathname 比较后的布尔值，名称与功能一致；重命名意见既基于误读也不是功能缺陷。"
+          }
+        },
+        "round1": {
+          "raw_response": "{\"issues\":[]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V08-ok",
+            "detects_gold": null,
+            "fix_usable": null,
+            "line_correct": null,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "代码已经修复，空 issues 符合参考答案；需结合所有缺陷题也输出空列表判断，不能单独视为区分能力提升。"
+          }
+        },
+        "round2": {
+          "raw_response": "{\"issues\":[]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V08-ok",
+            "detects_gold": null,
+            "fix_usable": null,
+            "line_correct": null,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "修复后的代码返回空 issues，符合参考答案；但同一轮所有缺陷题也返回空列表，没有体现区分能力。"
+          }
+        }
+      }
+    },
+    {
+      "id": "V09-bug",
+      "scenario_family": "unix-seconds-to-date",
+      "prompt_messages": [
+        {
+          "role": "system",
+          "content": "你是前端代码审查助手。只依据给出的代码和上下文，指出可确认的功能、资源释放、类型或可访问性问题；不要推测未提供的代码，不把风格偏好当缺陷。只输出一个合法 JSON 对象，不加 Markdown 代码围栏或额外说明。结构固定为 {\"issues\":[{\"line\":1,\"problem\":\"问题\",\"reason\":\"原因\",\"suggestion\":\"修改建议\"}]}。line 是代码块内从 1 开始的行号；每个问题都必须包含这四个字段，文字使用简洁中文，最多报告 3 个明确问题。没有可确认的问题时输出 {\"issues\":[]}。"
+        },
+        {
+          "role": "user",
+          "content": "文件：timestamp.js\n上下文：API 返回 UNIX 秒级时间戳，函数应返回对应时刻的 ISO 字符串。\n代码：\n```js\nfunction toIso(unixSeconds) {\n  return new Date(unixSeconds).toISOString();\n}\n```"
+        }
+      ],
+      "reference": {
+        "issues": [
+          {
+            "line": 2,
+            "problem": "把秒级时间戳当作毫秒传给 Date。",
+            "reason": "Date 的数值参数以毫秒计，会得到接近 1970 年的错误时间。",
+            "suggestion": "传入前乘以 1000。"
+          }
+        ]
+      },
+      "runs": {
+        "base": {
+          "raw_response": "{\"issues\":[{\"line\":1,\"problem\":\"类型不明确\",\"reason\":\"参数 unixSeconds 的类型未明确说明，可能导致运行时错误。\",\"suggestion\":\"添加类型注解或进行类型检查，例如添加 assert(typeof unixSeconds === 'number')。\"},{\"line\":2,\"problem\":\"资源释放问题\",\"reason\":\"Date 对象在返回后未被显式释放，可能造成内存泄漏。\",\"suggestion\":\"在不需要时显式调用 Date 对象的 release 方法（如果适用）。\"},{\"line\":2,\"problem\":\"可访问性问题\",\"reason\":\"toISOString() 方法可能在某些环境中不可用，例如在不支持的 JavaScript 环境中。\",\"suggestion\":\"添加对 toISOString 方法的兼容性检查或替代实现。\"}]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V09-bug",
+            "detects_gold": false,
+            "fix_usable": false,
+            "line_correct": false,
+            "extra_false_positives": 3,
+            "duplicate_issues": 0,
+            "notes": "漏掉秒/毫秒单位差。Date 无需显式 release；toISOString 不是可访问性问题；没有证据支持非法参数推测。"
+          }
+        },
+        "round1": {
+          "raw_response": "{\"issues\":[]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V09-bug",
+            "detects_gold": false,
+            "fix_usable": false,
+            "line_correct": false,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "输出空 issues，漏掉预设缺陷：把秒级时间戳当作毫秒传给 Date。 未提供定位或修复。"
+          }
+        },
+        "round2": {
+          "raw_response": "{\"issues\":[]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V09-bug",
+            "detects_gold": false,
+            "fix_usable": false,
+            "line_correct": false,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "第二轮仍输出空 issues，漏掉预设缺陷：把秒级时间戳当作毫秒传给 Date。 未提供定位或修复。"
+          }
+        }
+      }
+    },
+    {
+      "id": "V09-ok",
+      "scenario_family": "unix-seconds-to-date",
+      "prompt_messages": [
+        {
+          "role": "system",
+          "content": "你是前端代码审查助手。只依据给出的代码和上下文，指出可确认的功能、资源释放、类型或可访问性问题；不要推测未提供的代码，不把风格偏好当缺陷。只输出一个合法 JSON 对象，不加 Markdown 代码围栏或额外说明。结构固定为 {\"issues\":[{\"line\":1,\"problem\":\"问题\",\"reason\":\"原因\",\"suggestion\":\"修改建议\"}]}。line 是代码块内从 1 开始的行号；每个问题都必须包含这四个字段，文字使用简洁中文，最多报告 3 个明确问题。没有可确认的问题时输出 {\"issues\":[]}。"
+        },
+        {
+          "role": "user",
+          "content": "文件：timestamp.js\n上下文：API 返回 UNIX 秒级时间戳，函数应返回对应时刻的 ISO 字符串。\n代码：\n```js\nfunction toIso(unixSeconds) {\n  return new Date(unixSeconds * 1000).toISOString();\n}\n```"
+        }
+      ],
+      "reference": {
+        "issues": []
+      },
+      "runs": {
+        "base": {
+          "raw_response": "{\"issues\":[{\"line\":1,\"problem\":\"参数类型未验证\",\"reason\":\"未检查 unixSeconds 是否为数字或可转换为数字的值\",\"suggestion\":\"添加对 unixSeconds 的类型检查，例如使用 typeof 或 isNaN 检查\"},{\"line\":2,\"problem\":\"时间戳转换可能不准确\",\"reason\":\"Date 对象在某些时区或系统上可能无法正确解析 UNIX 秒级时间戳\",\"suggestion\":\"考虑使用 Date.UTC 或其他方法确保时间戳转换的准确性\"},{\"line\":2,\"problem\":\"未处理无效时间戳\",\"reason\":\"如果 unixSeconds 为无效值，返回的 ISO 字符串可能不正确或为无效值\",\"suggestion\":\"添加对无效时间戳的处理逻辑，例如返回 null 或错误信息\"}]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V09-ok",
+            "detects_gold": null,
+            "fix_usable": null,
+            "line_correct": null,
+            "extra_false_positives": 3,
+            "duplicate_issues": 0,
+            "notes": "代码已乘以 1000，Date 的数值参数与 toISOString 不会因本地时区而改变时刻；其余两项基于未给出的非法输入。"
+          }
+        },
+        "round1": {
+          "raw_response": "{\"issues\":[]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V09-ok",
+            "detects_gold": null,
+            "fix_usable": null,
+            "line_correct": null,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "代码已经修复，空 issues 符合参考答案；需结合所有缺陷题也输出空列表判断，不能单独视为区分能力提升。"
+          }
+        },
+        "round2": {
+          "raw_response": "{\"issues\":[]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V09-ok",
+            "detects_gold": null,
+            "fix_usable": null,
+            "line_correct": null,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "修复后的代码返回空 issues，符合参考答案；但同一轮所有缺陷题也返回空列表，没有体现区分能力。"
+          }
+        }
+      }
+    },
+    {
+      "id": "V10-bug",
+      "scenario_family": "multiple-select-value-array",
+      "prompt_messages": [
+        {
+          "role": "system",
+          "content": "你是前端代码审查助手。只依据给出的代码和上下文，指出可确认的功能、资源释放、类型或可访问性问题；不要推测未提供的代码，不把风格偏好当缺陷。只输出一个合法 JSON 对象，不加 Markdown 代码围栏或额外说明。结构固定为 {\"issues\":[{\"line\":1,\"problem\":\"问题\",\"reason\":\"原因\",\"suggestion\":\"修改建议\"}]}。line 是代码块内从 1 开始的行号；每个问题都必须包含这四个字段，文字使用简洁中文，最多报告 3 个明确问题。没有可确认的问题时输出 {\"issues\":[]}。"
+        },
+        {
+          "role": "user",
+          "content": "文件：Topics.jsx\n上下文：selected 是字符串数组，可包含多个值；这是受控多选框，需要同时选中所有已选项。\n代码：\n```jsx\nexport function Topics({ selected, onChange }) {\n  return <label>主题<select multiple value={selected[0]}\n    onChange={event => onChange(Array.from(event.target.selectedOptions, option => option.value))}>\n    <option value=\"react\">React</option><option value=\"css\">CSS</option>\n  </select></label>;\n}\n```"
+        }
+      ],
+      "reference": {
+        "issues": [
+          {
+            "line": 2,
+            "problem": "多选 select 的 value 只传了一个字符串。",
+            "reason": "受控 multiple select 需要数组，无法正确反映多个已选值。",
+            "suggestion": "把完整 selected 数组传给 value。"
+          }
+        ]
+      },
+      "runs": {
+        "base": {
+          "raw_response": "{\"issues\":[{\"line\":4,\"problem\":\"value绑定错误\",\"reason\":\"value应为数组而非单个字符串\",\"suggestion\":\"将value改为selected数组\"},{\"line\":4,\"problem\":\"onChange处理不正确\",\"reason\":\"未正确获取所有选中的选项值\",\"suggestion\":\"使用event.target.selectedOptions获取所有选项值\"},{\"line\":4,\"problem\":\"多选框未正确绑定选中状态\",\"reason\":\"未将selected数组与多选框的选中状态同步\",\"suggestion\":\"使用selected数组作为多选框的选中状态\"}]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V10-bug",
+            "detects_gold": true,
+            "fix_usable": true,
+            "line_correct": false,
+            "extra_false_positives": 1,
+            "duplicate_issues": 1,
+            "notes": "正确指出 value 应使用完整数组，并重复描述选中状态问题；但 selectedOptions 已正确用 Array.from 转换，onChange 属误报。value 在第 2 行，模型标到第 4 行 option。"
+          }
+        },
+        "round1": {
+          "raw_response": "{\"issues\":[]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V10-bug",
+            "detects_gold": false,
+            "fix_usable": false,
+            "line_correct": false,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "输出空 issues，漏掉预设缺陷：多选 select 的 value 只传了一个字符串。 未提供定位或修复。"
+          }
+        },
+        "round2": {
+          "raw_response": "{\"issues\":[]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V10-bug",
+            "detects_gold": false,
+            "fix_usable": false,
+            "line_correct": false,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "第二轮仍输出空 issues，漏掉预设缺陷：多选 select 的 value 只传了一个字符串。 未提供定位或修复。"
+          }
+        }
+      }
+    },
+    {
+      "id": "V10-ok",
+      "scenario_family": "multiple-select-value-array",
+      "prompt_messages": [
+        {
+          "role": "system",
+          "content": "你是前端代码审查助手。只依据给出的代码和上下文，指出可确认的功能、资源释放、类型或可访问性问题；不要推测未提供的代码，不把风格偏好当缺陷。只输出一个合法 JSON 对象，不加 Markdown 代码围栏或额外说明。结构固定为 {\"issues\":[{\"line\":1,\"problem\":\"问题\",\"reason\":\"原因\",\"suggestion\":\"修改建议\"}]}。line 是代码块内从 1 开始的行号；每个问题都必须包含这四个字段，文字使用简洁中文，最多报告 3 个明确问题。没有可确认的问题时输出 {\"issues\":[]}。"
+        },
+        {
+          "role": "user",
+          "content": "文件：Topics.jsx\n上下文：selected 是字符串数组，可包含多个值；这是受控多选框，需要同时选中所有已选项。\n代码：\n```jsx\nexport function Topics({ selected, onChange }) {\n  return <label>主题<select multiple value={selected}\n    onChange={event => onChange(Array.from(event.target.selectedOptions, option => option.value))}>\n    <option value=\"react\">React</option><option value=\"css\">CSS</option>\n  </select></label>;\n}\n```"
+        }
+      ],
+      "reference": {
+        "issues": []
+      },
+      "runs": {
+        "base": {
+          "raw_response": "{\"issues\":[{\"line\":4,\"problem\":\"value属性未正确绑定\",\"reason\":\"multiple select的value属性应为一个数组，但当前代码中使用了selected属性，这可能引起渲染问题\",\"suggestion\":\"将value属性改为selected属性，并确保selected的值为数组形式\"},{\"line\":4,\"problem\":\"onChange处理不正确\",\"reason\":\"onChange事件处理函数未正确获取选中的选项值，使用了event.target.selectedOptions，但未正确转换为数组\",\"suggestion\":\"使用Array.from或展开运算符正确转换选中的选项值\"},{\"line\":4,\"problem\":\"select元素未正确设置selected属性\",\"reason\":\"当selected数组中包含选项值时，应将选项的selected属性设置为true，但当前代码未实现此逻辑\",\"suggestion\":\"在option元素中添加selected属性，当选项值在selected数组中时设置为true\"}]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V10-ok",
+            "detects_gold": null,
+            "fix_usable": null,
+            "line_correct": null,
+            "extra_false_positives": 3,
+            "duplicate_issues": 0,
+            "notes": "value={selected} 与 Array.from(selectedOptions, ...) 均已正确。建议改 selected 属性或给 option 逐项设置 selected 不符合 React 受控 select 用法，三项均为误报。"
+          }
+        },
+        "round1": {
+          "raw_response": "{\"issues\":[]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V10-ok",
+            "detects_gold": null,
+            "fix_usable": null,
+            "line_correct": null,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "代码已经修复，空 issues 符合参考答案；需结合所有缺陷题也输出空列表判断，不能单独视为区分能力提升。"
+          }
+        },
+        "round2": {
+          "raw_response": "{\"issues\":[]}",
+          "schema_valid": true,
+          "schema_error": null,
+          "review": {
+            "id": "V10-ok",
+            "detects_gold": null,
+            "fix_usable": null,
+            "line_correct": null,
+            "extra_false_positives": 0,
+            "duplicate_issues": 0,
+            "notes": "修复后的代码返回空 issues，符合参考答案；但同一轮所有缺陷题也返回空列表，没有体现区分能力。"
+          }
+        }
+      }
+    }
+  ]
+}

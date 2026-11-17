@@ -1,0 +1,8 @@
+{"messages":[{"role":"user","content":"什么是变量？请简短回答。"},{"role":"assistant","content":"变量是用名称引用数据的方式。"}]}
+{"messages":[{"role":"user","content":"JavaScript 中 const 有什么作用？"},{"role":"assistant","content":"const 声明不能重新赋值的绑定，但绑定对象的属性仍可改变。"}]}
+{"messages":[{"role":"user","content":"什么是数组？"},{"role":"assistant","content":"数组是按顺序存放多个元素的数据结构。"}]}
+{"messages":[{"role":"user","content":"解释 HTTP 的请求与响应。"},{"role":"assistant","content":"客户端发送请求，服务器处理后返回响应。"}]}
+{"messages":[{"role":"user","content":"什么是单元测试？"},{"role":"assistant","content":"单元测试用来验证函数或模块等小单元是否按预期工作。"}]}
+{"messages":[{"role":"user","content":"什么是 LoRA？"},{"role":"assistant","content":"LoRA 冻结原模型权重，通过训练少量低秩参数来调整模型。"}]}
+{"messages":[{"role":"user","content":"训练集和测试集为什么要分开？"},{"role":"assistant","content":"分开可以检验模型对未参与训练的数据的表现。"}]}
+{"messages":[{"role":"user","content":"什么是 JSON？"},{"role":"assistant","content":"JSON 是一种用于表示和交换结构化数据的文本格式。"}]}

@@ -1,0 +1,27 @@
+# One predetermined pilot: one pass over 100 examples, evaluate final step 100.
+model: models/Qwen3-4B-4bit
+train: true
+test: false
+fine_tune_type: lora
+data: data/frontend-review
+seed: 42
+num_layers: 4
+batch_size: 1
+grad_accumulation_steps: 1
+iters: 100
+val_batches: -1
+learning_rate: 0.0001
+optimizer: adam
+steps_per_report: 5
+steps_per_eval: 50
+adapter_path: adapters/frontend-review-qlora-r1
+save_every: 50
+max_seq_length: 512
+grad_checkpoint: true
+mask_prompt: true
+report_to: null
+resume_adapter_file: null
+lora_parameters:
+  rank: 8
+  dropout: 0.0
+  scale: 16.0

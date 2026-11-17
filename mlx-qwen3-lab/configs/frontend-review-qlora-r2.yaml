@@ -1,0 +1,28 @@
+# One predetermined second experiment, initialized from the untouched base model.
+# Evaluate final update 20 only. Success: >=5/10 bugs, <9/10 clean false positives.
+model: models/Qwen3-4B-4bit
+train: true
+test: false
+fine_tune_type: lora
+data: data/frontend-review
+seed: 42
+num_layers: 4
+batch_size: 1
+grad_accumulation_steps: 1
+iters: 20
+val_batches: -1
+learning_rate: 0.00001
+optimizer: adam
+steps_per_report: 5
+steps_per_eval: 20
+adapter_path: adapters/frontend-review-qlora-r2
+save_every: 20
+max_seq_length: 512
+grad_checkpoint: true
+mask_prompt: true
+report_to: null
+resume_adapter_file: null
+lora_parameters:
+  rank: 8
+  dropout: 0.0
+  scale: 16.0

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FrontendReviewV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["issues"],
+  "properties": {
+    "issues": {
+      "type": "array",
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["line", "problem", "reason", "suggestion"],
+        "properties": {
+          "line": {"type": "integer", "minimum": 1},
+          "problem": {"type": "string", "minLength": 1, "maxLength": 300},
+          "reason": {"type": "string", "minLength": 1, "maxLength": 300},
+          "suggestion": {"type": "string", "minLength": 1, "maxLength": 300}
+        }
+      }
+    }
+  }
+}

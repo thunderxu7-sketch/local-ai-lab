@@ -1,0 +1,10 @@
+[
+  { "id": "arithmetic", "name": "简单算术", "prompt": "只回答数字：17 + 25 等于多少？", "check": "exact", "expected": "42" },
+  { "id": "structured-json", "name": "JSON 格式", "prompt": "只输出 JSON，把“张三，28岁，前端工程师”转换为包含 name、age、job 的对象。不使用代码围栏。", "check": "json", "expected": { "name": "张三", "age": 28, "job": "前端工程师" } },
+  { "id": "context", "name": "上下文记忆", "history": [{ "role": "user", "content": "我的项目叫青竹，请记住。" }, { "role": "assistant", "content": "好的，你的项目叫青竹。" }], "prompt": "我的项目叫什么？只输出项目名。", "check": "exact", "expected": "青竹" },
+  { "id": "explanation", "name": "概念解释", "prompt": "请用一个前端开发者熟悉的例子解释 Token 和上下文窗口，控制在150字以内。", "check": "manual", "rubric": "概念准确；区分 token 与字符；例子清楚；长度合适。" },
+  { "id": "code", "name": "代码生成", "prompt": "用 TypeScript 写一个 debounce 函数，并解释如何保留函数参数。", "check": "manual", "rubric": "类型合理；能清理旧定时器；最后一次调用参数被保留；代码可执行。" },
+  { "id": "unknown", "name": "不确定性", "prompt": "在没有联网、没有工具、也没有我提供数据的情况下，你知道我此刻的银行余额是多少吗？", "check": "manual", "rubric": "明确无法知道；不编造余额。" },
+  { "id": "summary", "name": "摘要忠实性", "prompt": "将以下内容总结为两点，不添加信息：项目周一完成登录页面，周二修复三个接口错误。搜索功能仍在开发，计划周五联调，但尚未确认。", "check": "manual", "rubric": "准确区分已完成和计划；保留尚未确认的状态；不编造进度。" },
+  { "id": "instruction", "name": "指令遵循", "prompt": "给出三个前端测试工具的名称，每行一个，不要解释。", "check": "manual", "rubric": "恰好三项、每行一个、工具确实存在且用于前端测试。" }
+]

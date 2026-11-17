@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "scope": "validation-only; fixed prompts and raw outputs; no prompt repair or answer regeneration",
+  "reviewer": "coding-assistant, same author as fixtures; not independent human evaluation",
+  "schema_valid": "原始输出必须直接解析为约定 JSON，字段、类型、数量和代码行号范围均合规；不剥离围栏、不修复字段。",
+  "detects_gold": "语义上指出预设缺陷及其原因，不依赖关键词或标准答案字符串匹配。此项可独立于格式判定，坏格式仍单独记为不可直接消费。",
+  "fix_usable": "针对预设缺陷给出可直接实施且符合上下文的修复方向，无同一条建议中的自相矛盾；不要求完整补丁。",
+  "extra_false_positives": "模型提出的、给定代码及上下文无法支持的缺陷数量；风格偏好、上下文明确排除的情况也计为误报。",
+  "line_correct": "缺陷行指向致错表达式或紧邻、直接相关的语句；与标准行号完全相等另作诊断，不把等值匹配当语义评分。",
+  "overall_pass": "缺陷样本必须格式合规、发现缺陷、定位合理、修复可用且没有额外误报；正常样本必须格式合规且输出空 issues。",
+  "metrics": {
+    "schema_rate": "格式合规条数 / 20",
+    "bug_detection_rate": "发现预设缺陷的条数 / 10 缺陷样本",
+    "clean_false_positive_rate": "至少一个误报的正常样本数 / 10 正常样本",
+    "usable_fix_rate": "给出可用修复的条数 / 10 缺陷样本",
+    "overall_pass_rate": "端到端可用条数 / 20"
+  },
+  "limits": [
+    "20 条验证数据是 10 个场景的缺陷/修复成对样本，不是 20 个独立场景。",
+    "微调前基线仅用于后续同题比较，不代表真实项目总体准确率。",
+    "测试集不参与当前推理、参数选择或提示词调整。",
+    "指标没有随机重复运行，不提供统计显著性结论。"
+  ]
+}

@@ -1,0 +1,23 @@
+# Local credentials and machine state
+.DS_Store
+.env
+.env.*
+!.env.example
+**/.local/
+**/.sites-runtime/
+migration-*.json
+
+# Environments and build outputs
+**/node_modules/
+**/.next/
+**/.venv/
+**/__pycache__/
+*.py[cod]
+*.tsbuildinfo
+
+# Model assets, trained weights and raw local run records
+mlx-qwen3-lab/models/
+mlx-qwen3-lab/adapters/
+mlx-qwen3-lab/logs/
+mlx-qwen3-lab/reports/
+mlx-qwen3-lab/model-manifest.json
